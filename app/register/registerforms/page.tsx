@@ -1,8 +1,11 @@
 "use client"
-import React from 'react'
 
-export default function page() {
+import ProtectedRoute from "@/components/protected-route"
+
+export default function RegisterFormsPage() {
   return (
-    <div>page</div>
+    <ProtectedRoute>
+      <div>RegisterFormsPage</div>
+    </ProtectedRoute>
   )
 }
