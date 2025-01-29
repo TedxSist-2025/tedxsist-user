@@ -1,5 +1,7 @@
 # TEDxSIST 2025
 
+(Still under development)
+
 ## Getting Started
 
 ### Installation
