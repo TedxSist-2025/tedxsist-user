@@ -1,4 +1,4 @@
-# ^TEDxSIST 2025
+# TEDxSIST 2025
 
 ## Getting Started
 
