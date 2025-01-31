@@ -3,6 +3,8 @@
 import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,7 +16,7 @@ import {
 import { cn } from "@/lib/utils"
 import { cva } from "class-variance-authority"
 import { usePathname } from "next/navigation"
-import { RegisterButton } from "@/components/ui/register-button"
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 const FAQContext = React.createContext<{
   isFAQVisible: boolean;
@@ -39,7 +41,7 @@ const navigationMenuTriggerStyle = cva(
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [isFAQVisible, setIsFAQVisible] = React.useState(false)
-
+  const router = useRouter();
   const scrollToFAQ = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     if (typeof window !== "undefined") {
@@ -99,11 +101,23 @@ const Navbar = () => {
                 <NavLink href="/" onClick={scrollToFAQ}>FAQs</NavLink>
               </div>
             </div>
-            <div className="flex-shrink-0">
-              <RegisterButton />
+            <div className="shrink-0 flex flex-col items-center space-y-2">
+  <HoverBorderGradient
+  containerClassName="rounded-[var(--radius)]"
+  as="button"
+  className="flex items-center gap-2 px-4 py-2.5"
+  onClick={() => router.push("/register")}
+>
+  <div className="flex items-center gap-2">
+    <span className="text-base font-medium leading-none">Register</span>
+    <ArrowRight className="w-4 h-4" />
+  </div>
+</HoverBorderGradient>
+</div>
+
             </div>
           </div>
-        </div>
+        
       </nav>
     </FAQContext.Provider>
   )

@@ -1,6 +1,6 @@
 import { InfiniteMovingCardsDemo } from "@/components/Testimonials";
 import { FAQ2 } from "@/components/FAQ";
-export default function Home() {
+export default function HomePage() {
   return (
     <main>
       
