@@ -100,3 +100,12 @@ We welcome contributions! Follow these steps:
 
 - Avoid creating branches in the main repository.
 - Always keep your fork updated with the latest changes from `upstream`.
+
+### TO-DO List
+
+- Error Handling for all routes (with internet firebase auth fails, but even then the protected route can be accessed, but if network connectivity is present such errors don't occur)
+
+- hydration error on navbar, subscribe is a unknown element that is causing this problem.
+
+- the security of the firebase backend must be tested.
+- the api routes at next.js are secured for now.
