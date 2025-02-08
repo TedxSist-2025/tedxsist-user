@@ -1,26 +1,32 @@
 "use client";
-
-import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils";
 
-export const InfiniteMovingCards = ({
+// Define the types for props
+interface Item {
+  quote: string;
+  name: string;
+  title: string;
+  photo: string;
+}
+
+interface InfiniteMovingCardsProps {
+  items: Item[];
+  direction?: "top" | "bottom";
+  speed?: "fast" | "normal" | "slow";
+  pauseOnHover?: boolean;
+  className?: string;
+  rowPosition?: "left" | "center" | "right";
+}
+
+export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
   items,
   direction = "top",
   speed = "fast",
   pauseOnHover = true,
   className,
   rowPosition = "center",
-}: {
-  items: {
-    quote: string;
-    name: string;
-    title: string;
-  }[];
-  direction?: "top" | "bottom";
-  speed?: "fast" | "normal" | "slow";
-  pauseOnHover?: boolean;
-  className?: string;
-  rowPosition?: "left" | "center" | "right";
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
@@ -28,7 +34,9 @@ export const InfiniteMovingCards = ({
   useEffect(() => {
     addAnimation();
   }, []);
+
   const [start, setStart] = useState(false);
+
   function addAnimation() {
     if (containerRef.current && scrollerRef.current) {
       const scrollerContent = Array.from(scrollerRef.current.children);
@@ -45,6 +53,7 @@ export const InfiniteMovingCards = ({
       setStart(true);
     }
   }
+
   const getDirection = () => {
     if (containerRef.current) {
       if (rowPosition === "center") {
@@ -60,6 +69,7 @@ export const InfiniteMovingCards = ({
       }
     }
   };
+
   const getSpeed = () => {
     if (containerRef.current) {
       if (speed === "fast") {
@@ -71,6 +81,7 @@ export const InfiniteMovingCards = ({
       }
     }
   };
+
   return (
     <div
       ref={containerRef}
@@ -101,15 +112,19 @@ export const InfiniteMovingCards = ({
                 aria-hidden="true"
                 className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
               ></div>
-              <span className=" relative z-20 text-sm leading-[1.6] text-gray-100 font-normal">
+              <span className="relative z-20 text-sm leading-[1.6] text-gray-100 font-normal">
                 {item.quote}
               </span>
               <div className="relative z-20 mt-6 flex flex-row items-center">
-                <span className="flex flex-col gap-1">
-                  <span className=" text-sm leading-[1.6] text-gray-400 font-normal">
+                <Avatar className="w-14 h-13"> {/* Increased size */}
+                  <AvatarImage src={item.photo} alt={item.name} />
+                  <AvatarFallback>{item.name[0]}</AvatarFallback>
+                </Avatar>
+                <span className="flex flex-col gap-1 ml-4">
+                  <span className="text-sm leading-[1.6] text-gray-400 font-normal">
                     {item.name}
                   </span>
-                  <span className=" text-sm leading-[1.6] text-gray-400 font-normal">
+                  <span className="text-sm leading-[1.6] text-gray-400 font-normal">
                     {item.title}
                   </span>
                 </span>

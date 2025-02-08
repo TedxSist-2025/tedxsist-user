@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { motion } from "framer-motion";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const testimonialHeader = {
   heading: "What Our Speakers Say",
@@ -114,16 +115,19 @@ export function InfiniteMovingCardsDemo() {
 const leftTestimonials = [
   {
     quote: "TEDxSIST transformed my perspective on innovation. The diverse range of speakers and thought-provoking discussions created an atmosphere of intellectual curiosity that continues to inspire my work in technology and education.",
+    photo: "/th.jpg",
     name: "Dr. Sarah Chen",
     title: "AI Research Scientist"
   },
   {
     quote: "The event's unique blend of technology and creativity opened my eyes to new possibilities. The collaborative environment and engaging discussions made it an unforgettable experience.",
+    photo: "/th.jpg",
     name: "James Rodriguez",
     title: "Innovation Director"
   },
   {
     quote: "Being part of TEDxSIST was a turning point in my career. The insights shared and connections made have profoundly influenced my approach to sustainable development.",
+    photo: "/th.jpg",
     name: "Priya Patel",
     title: "Environmental Engineer"
   }
@@ -132,16 +136,19 @@ const leftTestimonials = [
 const centerTestimonials = [
   {
     quote: "The interdisciplinary nature of TEDxSIST creates a perfect environment for breakthrough ideas. I was amazed by how different perspectives could converge to form innovative solutions for complex global challenges.",
+    photo: "/th.jpg",
     name: "Michael Chang",
     title: "Tech Entrepreneur"
   },
   {
     quote: "What sets TEDxSIST apart is its commitment to fostering meaningful dialogue. The event brings together diverse voices and creates a platform where ideas can truly flourish.",
+    photo: "/th.jpg",
     name: "Emma Thompson",
     title: "Social Impact Consultant"
   },
   {
     quote: "The energy at TEDxSIST was electric. From groundbreaking research presentations to inspiring success stories, every moment was filled with learning and inspiration.",
+    photo: "/th.jpg",
     name: "Raj Malhotra",
     title: "Digital Strategist"
   }
@@ -150,16 +157,19 @@ const centerTestimonials = [
 const rightTestimonials = [
   {
     quote: "TEDxSIST exemplifies the power of community in driving innovation. The collaborative spirit and intellectual discourse create an environment where transformative ideas can take root and flourish.",
+    photo: "/th.jpg",  
     name: "Lisa Wong",
     title: "Innovation Lead"
   },
   {
     quote: "The event's focus on emerging technologies and their societal impact was eye-opening. It provided a unique platform to explore how innovation can address real-world challenges.",
+    photo: "/th.jpg",
     name: "David Miller",
     title: "Tech Policy Advisor"
   },
   {
     quote: "As a speaker, I was impressed by the depth of engagement from the audience. TEDxSIST creates an atmosphere where ideas can be freely exchanged and refined.",
+    photo: "/th.jpg",
     name: "Aisha Rahman",
     title: "Research Director"
   }
