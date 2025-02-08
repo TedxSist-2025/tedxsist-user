@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { motion } from "framer-motion";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const testimonialHeader = {
   heading: "What Our Speakers Say",

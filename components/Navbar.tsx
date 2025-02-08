@@ -6,7 +6,32 @@ import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { useRouter, usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "motion/react"
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu"
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient"
 import { cn } from "@/lib/utils"
+import { cva } from "class-variance-authority"
+
+const navigationMenuTriggerStyle = cva(
+  "relative group inline-flex h-9 w-max items-center justify-center px-4 py-2 text-sm font-medium text-foreground",
+  {
+    variants: {
+      isActive: {
+        true: "after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary",
+        false: "after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"
+      }
+    },
+    defaultVariants: {
+      isActive: false
+    }
+  }
+)
 
 const FAQContext = React.createContext<{
   isFAQVisible: boolean;
@@ -24,7 +49,6 @@ const Navbar = () => {
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/events", label: "Events" },
-    { href: "/blogs", label: "Blogs" },
     { href: "/#faq-section", label: "FAQs" },
   ]
 
@@ -64,7 +88,7 @@ const Navbar = () => {
         className={cn(
           "fixed top-4 left-0 w-full z-50",
           isScrolled
-            ? "top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-7xl bg-background/40 backdrop-blur-lg rounded-lg shadow-lg"
+            ? "top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-7xl bg-background/40 backdrop-blur-lg rounded-lg shadow-[0px_8px_20px_-2px_rgba(31,31,31,0.3),4px_0px_12px_-2px_rgba(31,31,31,0.2),-4px_0px_12px_-2px_rgba(31,31,31,0.2)]"
             : "bg-transparent shadow-none border-none"
         )}
       >
@@ -86,26 +110,26 @@ const Navbar = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              {navItems.map((item) => (
-                <NavLink
-                  key={item.href}
-                  href={item.href}
-                  onClick={item.href === "/#faq-section" ? scrollToFAQ : undefined}
-                >
-                  {item.label}
-                </NavLink>
-              ))}
+              <NavLink href="/">Home</NavLink>
+              <NavLink href="/about">About</NavLink>
+              <NavLink href="/events">Events</NavLink>
+              <BlogsMenu />
+              <NavLink href="/#faq-section" onClick={scrollToFAQ}>FAQs</NavLink>
             </div>
 
             {/* Register Button - Desktop */}
             <div className="hidden md:flex">
-              <button
+              <HoverBorderGradient
+                containerClassName="rounded-[var(--radius)]"
+                as="button"
+                className="flex items-center gap-2 px-4 py-2.5"
                 onClick={() => router.push("/register")}
-                className="flex items-center gap-2 px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
               >
-                <span>Register</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
+                <div className="flex items-center gap-2">
+                  <span className="text-base font-medium leading-none">Register</span>
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+              </HoverBorderGradient>
             </div>
 
             {/* Hamburger Menu */}
@@ -213,12 +237,37 @@ const NavLink = ({
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void
 }) => {
   const pathname = usePathname()
-  const { isFAQVisible } = React.useContext(FAQContext)
+  const { isFAQVisible, setIsFAQVisible } = React.useContext(FAQContext)
 
-  const isActive =
-    children === "FAQs"
-      ? isFAQVisible
-      : children === "Home"
+  React.useEffect(() => {
+    const checkFAQVisibility = () => {
+      if (children === "FAQs" && pathname === "/") {
+        const faqSection = document.getElementById('faq-section')
+        if (faqSection) {
+          const rect = faqSection.getBoundingClientRect()
+          const viewportHeight = window.innerHeight
+          const visibilityThreshold = viewportHeight * 0.7
+          const sectionVisible = rect.height >= visibilityThreshold && 
+                               rect.top <= (viewportHeight * 0.3)
+          setIsFAQVisible(sectionVisible)
+        }
+      }
+    }
+
+    if (pathname !== "/") {
+      setIsFAQVisible(false)
+    }
+
+    window.addEventListener('scroll', checkFAQVisibility)
+    checkFAQVisibility()
+    return () => {
+      window.removeEventListener('scroll', checkFAQVisibility)
+    }
+  }, [children, pathname, setIsFAQVisible])
+
+  const isActive = children === "FAQs"
+    ? isFAQVisible
+    : children === "Home"
       ? pathname === "/" && !isFAQVisible
       : pathname === href
 
@@ -238,5 +287,70 @@ const NavLink = ({
     </Link>
   )
 }
+
+const BlogsMenu = () => (
+  <NavigationMenu>
+    <NavigationMenuList className="bg-transparent">
+      <NavigationMenuItem>
+        <NavigationMenuTrigger 
+          className={cn(
+            navigationMenuTriggerStyle(),
+            "bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent data-[state=open]:bg-transparent data-[active]:bg-transparent text-foreground hover:text-primary"
+          )}
+        >
+          Blogs
+        </NavigationMenuTrigger>
+        <NavigationMenuContent>
+          <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-background/95 backdrop-blur-sm">
+            <li className="row-span-3">
+              <NavigationMenuLink asChild>
+                <Link
+                  href="/"
+                  className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                >
+                  <div className="mb-2 mt-4 text-lg font-medium text-foreground">Featured Blog</div>
+                  <p className="text-sm leading-tight text-muted-foreground">Check out our latest featured blog post</p>
+                </Link>
+              </NavigationMenuLink>
+            </li>
+            <ListItem href="/blogs/tech" title="Tech">
+              Latest in technology and innovation
+            </ListItem>
+            <ListItem href="/blogs/lifestyle" title="Lifestyle">
+              Tips for a better life
+            </ListItem>
+            <ListItem href="/blogs/travel" title="Travel">
+              Explore the world through our experiences
+            </ListItem>
+          </ul>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+    </NavigationMenuList>
+  </NavigationMenu>
+)
+
+const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWithoutRef<"a"> & { title: string }>(
+  ({ className, title, children, href = "/", ...props }, ref) => {
+    return (
+      <li>
+        <NavigationMenuLink asChild>
+          <Link
+            ref={ref}
+            href={href}
+            className={cn(
+              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-foreground",
+              className,
+            )}
+            {...props}
+          >
+            <div className="text-sm font-medium leading-none">{title}</div>
+            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
+          </Link>
+        </NavigationMenuLink>
+      </li>
+    )
+  }
+)
+ListItem.displayName = "ListItem"
 
 export default Navbar
