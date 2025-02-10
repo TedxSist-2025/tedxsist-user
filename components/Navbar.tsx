@@ -36,7 +36,7 @@ const navigationMenuTriggerStyle = cva(
 const FAQContext = React.createContext<{
   isFAQVisible: boolean;
   setIsFAQVisible: React.Dispatch<React.SetStateAction<boolean>>;
-}>({ isFAQVisible: false, setIsFAQVisible: () => {} });
+}>({ isFAQVisible: false, setIsFAQVisible: () => { } });
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = React.useState(false)
@@ -185,7 +185,7 @@ const Navbar = () => {
                 transition={{ duration: 0.3 }}
                 className="md:hidden"
               >
-                <div className="px-2 pt-2 pb-3 space-y-1 bg-background">
+                <div className="px-2 pt-2 pb-3 space-y-1 ">
                   {navItems.map((item) => (
                     <motion.div
                       key={item.href}
@@ -247,8 +247,8 @@ const NavLink = ({
           const rect = faqSection.getBoundingClientRect()
           const viewportHeight = window.innerHeight
           const visibilityThreshold = viewportHeight * 0.7
-          const sectionVisible = rect.height >= visibilityThreshold && 
-                               rect.top <= (viewportHeight * 0.3)
+          const sectionVisible = rect.height >= visibilityThreshold &&
+            rect.top <= (viewportHeight * 0.3)
           setIsFAQVisible(sectionVisible)
         }
       }
@@ -292,7 +292,7 @@ const BlogsMenu = () => (
   <NavigationMenu>
     <NavigationMenuList className="bg-transparent">
       <NavigationMenuItem>
-        <NavigationMenuTrigger 
+        <NavigationMenuTrigger
           className={cn(
             navigationMenuTriggerStyle(),
             "bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent data-[state=open]:bg-transparent data-[active]:bg-transparent text-foreground hover:text-primary"
