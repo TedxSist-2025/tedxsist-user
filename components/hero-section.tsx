@@ -3,11 +3,15 @@ import React from "react";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import Image from "next/image";
 import { Spotlight } from "@/components/ui/spotlight-new";
+
 export function HeroScrollDemo() {
   return (
-    
-    <div className="flex flex-col overflow-hidden">
+    <div className="relative flex flex-col overflow-hidden">
+      {/* Fixed Spotlight */}
+      <div className="inset-0 -z-10">
         <Spotlight />
+      </div>
+      
       <ContainerScroll
         titleComponent={
           <>
