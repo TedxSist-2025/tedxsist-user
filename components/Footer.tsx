@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
   }, []);
 
   return (
-    <footer className="bg-black text-white py-12 px-6 sm:px-8 lg:px-12 font-inter">
+    <footer className="bg-background text-white py-12 px-6 sm:px-8 lg:px-12 font-inter border-t border-border">
       <div className="max-w-7xl mx-auto">
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
