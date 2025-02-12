@@ -55,7 +55,7 @@ export const BentoGridItem = ({
         </div>
 
         {/* Title */}
-        <div className="font-sans font-bold text-neutral-200">{title}</div>
+        <div className="font-sans font-bold text-neutral-200 text-lg">{title}</div>
 
         {/* Author and Timestamp */}
         <div className="flex flex-col gap-2 text-neutral-400 text-xs">

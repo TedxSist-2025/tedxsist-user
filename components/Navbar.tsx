@@ -23,7 +23,7 @@ const navigationMenuTriggerStyle = cva(
   {
     variants: {
       isActive: {
-        true: "after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary",
+        true: "after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary ",
         false: "after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"
       }
     },
@@ -113,7 +113,9 @@ const Navbar = () => {
               <NavLink href="/">Home</NavLink>
               <NavLink href="/about">About</NavLink>
               <NavLink href="/events">Events</NavLink>
+              
               <BlogsMenu />
+              
               <NavLink href="/#faq-section" onClick={scrollToFAQ}>FAQs</NavLink>
             </div>
 
@@ -288,46 +290,62 @@ const NavLink = ({
   )
 }
 
-const BlogsMenu = () => (
-  <NavigationMenu>
-    <NavigationMenuList className="bg-transparent">
-      <NavigationMenuItem>
-        <NavigationMenuTrigger
-          className={cn(
-            navigationMenuTriggerStyle(),
-            "bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent data-[state=open]:bg-transparent data-[active]:bg-transparent text-foreground hover:text-primary"
-          )}
-        >
-          Blogs
-        </NavigationMenuTrigger>
-        <NavigationMenuContent>
-          <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-background/95 backdrop-blur-sm">
-            <li className="row-span-3">
-              <NavigationMenuLink asChild>
-                <Link
-                  href="/"
-                  className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                >
-                  <div className="mb-2 mt-4 text-lg font-medium text-foreground">Featured Blog</div>
-                  <p className="text-sm leading-tight text-muted-foreground">Check out our latest featured blog post</p>
-                </Link>
-              </NavigationMenuLink>
-            </li>
-            <ListItem href="/blogs/tech" title="Tech">
-              Latest in technology and innovation
-            </ListItem>
-            <ListItem href="/blogs/lifestyle" title="Lifestyle">
-              Tips for a better life
-            </ListItem>
-            <ListItem href="/blogs/travel" title="Travel">
-              Explore the world through our experiences
-            </ListItem>
-          </ul>
-        </NavigationMenuContent>
-      </NavigationMenuItem>
-    </NavigationMenuList>
-  </NavigationMenu>
-)
+const BlogsMenu = () => {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const isActive = pathname === "/blogs";
+  const isSubPageActive = pathname.startsWith("/blogs/");
+
+  return (
+    <NavigationMenu>
+      <NavigationMenuList className="bg-transparent">
+        <NavigationMenuItem>
+          <NavigationMenuTrigger
+            onClick={() => router.push("/blogs")}
+            className={cn(
+              navigationMenuTriggerStyle({ isActive: isActive || isSubPageActive }),
+              "bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent data-[state=open]:bg-transparent data-[active]:bg-transparent px-3 py-2",
+              isActive || isSubPageActive ? "text-[#EB0028]" : "text-foreground hover:text-primary"
+            )}
+          >
+            Blogs
+          </NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-background/95 backdrop-blur-sm">
+              <li className="row-span-3">
+                <NavigationMenuLink asChild>
+                  <Link
+                    href="/blogs"
+                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                  >
+                    <div className="mb-2 mt-4 text-lg font-medium text-foreground">
+                      Featured Blog
+                    </div>
+                    <p className="text-sm leading-tight text-muted-foreground">
+                      Check out our latest featured blog post
+                    </p>
+                  </Link>
+                </NavigationMenuLink>
+              </li>
+              <ListItem href="/blogs/tech" title="Tech">
+                Latest in technology and innovation
+              </ListItem>
+              <ListItem href="/blogs/lifestyle" title="Lifestyle">
+                Tips for a better life
+              </ListItem>
+              <ListItem href="/blogs/travel" title="Travel">
+                Explore the world through our experiences
+              </ListItem>
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+};
+
+
 
 const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWithoutRef<"a"> & { title: string }>(
   ({ className, title, children, href = "/", ...props }, ref) => {
