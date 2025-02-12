@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { useRouter, usePathname } from "next/navigation"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence } from "framer-motion";
 import {
   NavigationMenu,
   NavigationMenuContent,

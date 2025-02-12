@@ -30,6 +30,7 @@ export const BentoGridItem = ({
   name,
   avatarSrc,
   timeAgo,
+  onClick, // Add onClick prop
 }: {
   className?: string;
   title?: string | React.ReactNode;
@@ -39,11 +40,13 @@ export const BentoGridItem = ({
   name?: string;
   avatarSrc?: string;
   timeAgo?: string;
+  onClick?: () => void; // Make onClick optional
 }) => {
   return (
     <div
+      onClick={onClick} // Make the entire card clickable
       className={cn(
-        "row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 bg-background border-white/[0.2] border flex flex-col space-y-4",
+        "row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 bg-background border-white/[0.2] border flex flex-col space-y-4 cursor-pointer", // Added cursor-pointer
         className
       )}
     >
@@ -66,7 +69,6 @@ export const BentoGridItem = ({
             </Avatar>
             <span className="text-sm text-neutral-300">{name}</span>
           </div>
-          
         </div>
 
         {/* Description */}
@@ -76,3 +78,4 @@ export const BentoGridItem = ({
     </div>
   );
 };
+
