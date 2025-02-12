@@ -86,10 +86,10 @@ const Navbar = () => {
     <FAQContext.Provider value={{ isFAQVisible, setIsFAQVisible }}>
       <nav
         className={cn(
-          "fixed top-4 left-0 w-full z-50",
+          "fixed top-4 left-0 w-full z-50 ",
           isScrolled
-            ? "top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-7xl bg-background/40 backdrop-blur-lg rounded-lg shadow-[0px_8px_20px_-2px_rgba(31,31,31,0.3),4px_0px_12px_-2px_rgba(31,31,31,0.2),-4px_0px_12px_-2px_rgba(31,31,31,0.2)]"
-            : "bg-transparent shadow-none border-none"
+            ? "top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-7xl bg-background/30 backdrop-blur-lg rounded-2xl shadow-[0px_5px_18px_rgba(204,_204,_204,_0.1)] border border-transparent"
+            : "bg-transparent shadow-none border-none border-brand-neutrals-900 "
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
