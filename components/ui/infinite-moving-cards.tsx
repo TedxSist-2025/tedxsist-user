@@ -1,7 +1,7 @@
 import React from "react";
-import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
+import { Quote } from "lucide-react";
 
 interface Item {
   quote: string;
@@ -83,63 +83,63 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-50 h-[600px] max-w-7xl overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,white_20%,white_80%,transparent)]",
+        "scroller relative z-20 h-[600px] max-w-7xl overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,white_20%,white_80%,transparent)]",
         className
       )}
     >
       <ul
         ref={scrollerRef}
         className={cn(
-          "flex flex-col min-h-full shrink-0 gap-4 px-4 w-max",
+          "flex flex-col min-h-full shrink-0 gap-6 px-4 w-max",
           start && "animate-scroll",
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
       >
         {items.map((item) => (
           <li
-            className="group relative w-[350px] max-w-full rounded-xl bg-black p-6 border-2 border-zinc-800/50 transition-all duration-300 overflow-hidden"
+            className="group relative w-[400px] max-w-full rounded-2xl bg-gradient-to-br from-zinc-900 to-black p-8 transition-all duration-300 hover:shadow-xl hover:shadow-primary/20"
             key={item.name}
           >
-            {/* Content Container */}
-            <div className="relative z-30 flex flex-col space-y-4">
-              {/* Quote */}
-              <p className="text-sm leading-6 text-gray-300">{item.quote}</p>
+            {/* Decorative elements */}
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            
+            <div className="relative space-y-6">
+              {/* Quote icon top */}
+              <div className="absolute -top-4 -left-2">
+                <Quote className="h-8 w-8 text-primary/40 rotate-180" />
+              </div>
               
-              {/* Footer with Avatar */}
-              <footer className="flex items-center gap-4">
-                <Avatar className="h-10 w-10 rounded-full ring-2 ring-white/10">
+              {/* Quote content */}
+              <blockquote className="relative pt-4 pb-2">
+                <p className="text-base font-medium leading-relaxed text-gray-300">
+                  {item.quote}
+                </p>
+              </blockquote>
+              
+              {/* Quote icon bottom */}
+              <div className="absolute -bottom-3 right-0">
+                <Quote className="h-8 w-8 text-primary/40" />
+              </div>
+
+              {/* Author info */}
+              <footer className="flex items-center gap-4 border-t border-gray-800 pt-6 mt-6">
+                <Avatar className="h-12 w-12 rounded-full ">
                   <AvatarImage
                     src={item.photo}
                     alt={item.name}
                     className="object-cover"
                   />
-                  <AvatarFallback className="bg-zinc-800 text-zinc-400">
+                  <AvatarFallback className="bg-gradient-to-br from-white/20 to-white/10 text-white">
                     {item.name[0]}
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col">
-                  <span className="text-sm font-medium text-white">
+                  <span className="text-sm font-semibold tracking-wide text-white">
                     {item.name}
                   </span>
-                  <span className="text-sm text-zinc-500">{item.title}</span>
+                  <span className="text-sm text-gray-400 mt-0.5">{item.title}</span>
                 </div>
               </footer>
-            </div>
-
-            {/* Background Image with curved separation */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-90 transition-opacity duration-300">
-              <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-transparent z-20" 
-                   style={{
-                     clipPath: "ellipse(100% 60% at 50% 40%)"
-                   }}
-              />
-              <Image
-                src="/bg.png"
-                alt="bg"
-                layout="fill"
-                objectFit="cover"
-                objectPosition="center"
-              />
             </div>
           </li>
         ))}
