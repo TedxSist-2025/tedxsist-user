@@ -55,26 +55,26 @@ const cardVariants = {
   return (
     <div ref={containerRef} className="py-20 flex flex-col items-center justify-center gap-8">
       <div className="text-center space-y-4">
-        <motion.h2
+        <motion.h1
           className="text-4xl font-bold text-foreground"
           variants={titleVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {testimonialHeader.heading}
-        </motion.h2>
+          What Our <span className="text-primary">Speakers</span> Say
+        </motion.h1>
         <motion.p
-          className="text-xl text-muted-foreground"
+          className="text-xl text-muted-foreground text-bold" 
           variants={subtitleVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {testimonialHeader.subheading}
+          Voices from <span className="text-primary">TEDx</span><span className="text-bold">SIST</span>
         </motion.p>
       </div>
 
       <motion.div
-        className="relative flex gap-6 overflow-hidden"
+        className="relative flex gap-x-0 overflow-hidden"
         variants={cardContainerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -102,19 +102,100 @@ const cardVariants = {
 }
 
 const leftTestimonials = [
-  { quote: "TEDxSIST transformed my perspective on innovation.", photo: "/th.jpg", name: "Dr. Sarah Chen", title: "AI Research Scientist" },
-  { quote: "The event's blend of technology and creativity was inspiring.", photo: "/th.jpg", name: "James Rodriguez", title: "Innovation Director" },
-  { quote: "Being part of TEDxSIST was a turning point in my career.", photo: "/th.jpg", name: "Priya Patel", title: "Environmental Engineer" },
+  {
+    quote: "TEDxSIST completely reshaped how I view innovation and collaboration. The insights shared were truly thought-provoking, sparking new ideas and directions in my research.",
+    photo: "/th.jpg",
+    name: "Dr. Sarah Chen",
+    title: "AI Research Scientist",
+  },
+  {
+    quote: "The fusion of technology, creativity, and impactful storytelling at TEDxSIST was remarkable. It was an experience that challenged my thinking and broadened my horizons.",
+    photo: "/th.jpg",
+    name: "James Rodriguez",
+    title: "Innovation Director",
+  },
+  {
+    quote: "Attending TEDxSIST marked a pivotal moment in my career. The event’s speakers and discussions gave me the motivation to pursue sustainability initiatives more passionately.",
+    photo: "/th.jpg",
+    name: "Priya Patel",
+    title: "Environmental Engineer",
+  },
+  {
+    quote: "TEDxSIST was a powerhouse of inspiration. Every session was an opportunity to learn, connect, and grow in ways I never imagined before.",
+    photo: "/th.jpg",
+    name: "Olivia Tan",
+    title: "Robotics Specialist",
+  },
+  {
+    quote: "The level of innovation and intellectual engagement at TEDxSIST was phenomenal. It was more than just an event—it was an experience that left a lasting impact on me.",
+    photo: "/th.jpg",
+    name: "Rahul Desai",
+    title: "Data Scientist",
+  },
 ];
 
 const centerTestimonials = [
-  { quote: "TEDxSIST fosters meaningful dialogue and innovative ideas.", photo: "/th.jpg", name: "Michael Chang", title: "Tech Entrepreneur" },
-  { quote: "The event brings together diverse voices.", photo: "/th.jpg", name: "Emma Thompson", title: "Social Impact Consultant" },
-  { quote: "Every moment was filled with learning and inspiration.", photo: "/th.jpg", name: "Raj Malhotra", title: "Digital Strategist" },
+  {
+    quote: "TEDxSIST is more than a conference; it's a melting pot of groundbreaking ideas. The discussions here push the boundaries of innovation and thought leadership.",
+    photo: "/th.jpg",
+    name: "Michael Chang",
+    title: "Tech Entrepreneur",
+  },
+  {
+    quote: "Few events manage to bring together such a diverse and insightful group of minds. TEDxSIST did exactly that, creating an atmosphere of shared learning and collaboration.",
+    photo: "/th.jpg",
+    name: "Emma Thompson",
+    title: "Social Impact Consultant",
+  },
+  {
+    quote: "Every moment at TEDxSIST was an eye-opener, filled with stories of resilience, breakthrough technologies, and strategies that redefine industries.",
+    photo: "/th.jpg",
+    name: "Raj Malhotra",
+    title: "Digital Strategist",
+  },
+  {
+    quote: "TEDxSIST is where creativity meets impact. The discussions challenged conventional perspectives and encouraged solutions that have the power to create real change.",
+    photo: "/th.jpg",
+    name: "Sophia Kim",
+    title: "Human-Centered AI Expert",
+  },
+  {
+    quote: "I left TEDxSIST feeling energized and equipped with fresh ideas. The speakers, discussions, and interactions were a perfect blend of inspiration and practical insights.",
+    photo: "/th.jpg",
+    name: "Arjun Mehta",
+    title: "Startup Founder",
+  },
 ];
 
 const rightTestimonials = [
-  { quote: "TEDxSIST exemplifies the power of community in innovation.", photo: "/th.jpg", name: "Lisa Wong", title: "Innovation Lead" },
-  { quote: "The event's focus on emerging technologies was eye-opening.", photo: "/th.jpg", name: "David Miller", title: "Tech Policy Advisor" },
-  { quote: "TEDxSIST creates an atmosphere for exchanging refined ideas.", photo: "/th.jpg", name: "Aisha Rahman", title: "Research Director" },
+  {
+    quote: "TEDxSIST brilliantly highlights how community-driven innovation fuels progress. It’s a space where visionary thinkers and changemakers come together to share and grow.",
+    photo: "/th.jpg",
+    name: "Lisa Wong",
+    title: "Innovation Lead",
+  },
+  {
+    quote: "The event’s focus on emerging technologies and societal impact was incredibly enlightening. It provided a platform to explore how technology shapes our future.",
+    photo: "/th.jpg",
+    name: "David Miller",
+    title: "Tech Policy Advisor",
+  },
+  {
+    quote: "TEDxSIST fosters a culture of curiosity and fearless innovation. The conversations and ideas shared here are sure to influence industries for years to come.",
+    photo: "/th.jpg",
+    name: "Aisha Rahman",
+    title: "Research Director",
+  },
+  {
+    quote: "I was captivated by the quality of insights and expertise at TEDxSIST. The event didn’t just showcase ideas—it ignited meaningful action and change.",
+    photo: "/th.jpg",
+    name: "Ethan Parker",
+    title: "Sustainability Consultant",
+  },
+  {
+    quote: "TEDxSIST is where groundbreaking ideas take center stage. The event provided a unique opportunity to engage with brilliant minds from diverse fields.",
+    photo: "/th.jpg",
+    name: "Natasha Verma",
+    title: "Neuroscience Researcher",
+  },
 ];

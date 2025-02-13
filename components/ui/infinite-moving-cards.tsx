@@ -1,9 +1,8 @@
-"use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 
-// Define the types for props
 interface Item {
   quote: string;
   name: string;
@@ -30,17 +29,15 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
+  const [start, setStart] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     addAnimation();
   }, []);
-
-  const [start, setStart] = useState(false);
 
   function addAnimation() {
     if (containerRef.current && scrollerRef.current) {
       const scrollerContent = Array.from(scrollerRef.current.children);
-
       scrollerContent.forEach((item) => {
         const duplicatedItem = item.cloneNode(true);
         if (scrollerRef.current) {
@@ -86,7 +83,7 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20 h-[600px] max-w-7xl overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,white_20%,white_80%,transparent)]",
+        "scroller relative z-50 h-[600px] max-w-7xl overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,white_20%,white_80%,transparent)]",
         className
       )}
     >
@@ -100,39 +97,55 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
       >
         {items.map((item) => (
           <li
-            className="w-[350px] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px]"
-            style={{
-              background:
-                "linear-gradient(180deg, var(--slate-800), var(--slate-900)",
-            }}
+            className="group relative w-[350px] max-w-full rounded-xl bg-black p-6 border-2 border-zinc-800/50 transition-all duration-300 overflow-hidden"
             key={item.name}
           >
-            <blockquote>
-              <div
-                aria-hidden="true"
-                className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
-              ></div>
-              <span className="relative z-20 text-sm leading-[1.6] text-gray-100 font-normal">
-                {item.quote}
-              </span>
-              <div className="relative z-20 mt-6 flex flex-row items-center">
-                <Avatar className="w-14 h-13"> {/* Increased size */}
-                  <AvatarImage src={item.photo} alt={item.name} />
-                  <AvatarFallback>{item.name[0]}</AvatarFallback>
+            {/* Content Container */}
+            <div className="relative z-30 flex flex-col space-y-4">
+              {/* Quote */}
+              <p className="text-sm leading-6 text-gray-300">{item.quote}</p>
+              
+              {/* Footer with Avatar */}
+              <footer className="flex items-center gap-4">
+                <Avatar className="h-10 w-10 rounded-full ring-2 ring-white/10">
+                  <AvatarImage
+                    src={item.photo}
+                    alt={item.name}
+                    className="object-cover"
+                  />
+                  <AvatarFallback className="bg-zinc-800 text-zinc-400">
+                    {item.name[0]}
+                  </AvatarFallback>
                 </Avatar>
-                <span className="flex flex-col gap-1 ml-4">
-                  <span className="text-sm leading-[1.6] text-gray-400 font-normal">
+                <div className="flex flex-col">
+                  <span className="text-sm font-medium text-white">
                     {item.name}
                   </span>
-                  <span className="text-sm leading-[1.6] text-gray-400 font-normal">
-                    {item.title}
-                  </span>
-                </span>
-              </div>
-            </blockquote>
+                  <span className="text-sm text-zinc-500">{item.title}</span>
+                </div>
+              </footer>
+            </div>
+
+            {/* Background Image with curved separation */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-90 transition-opacity duration-300">
+              <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-transparent z-20" 
+                   style={{
+                     clipPath: "ellipse(100% 60% at 50% 40%)"
+                   }}
+              />
+              <Image
+                src="/bg.png"
+                alt="bg"
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center"
+              />
+            </div>
           </li>
         ))}
       </ul>
     </div>
   );
 };
+
+export default InfiniteMovingCards;
