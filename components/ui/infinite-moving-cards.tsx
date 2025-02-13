@@ -80,10 +80,10 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
   };
 
   return (
-    <div
+   <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-50 h-[600px] max-w-7xl overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,white_20%,white_80%,transparent)]",
+        "scroller relative z-10 h-[600px] max-w-7xl overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,white_20%,white_80%,transparent)]",
         className
       )}
     >
@@ -101,7 +101,7 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
             key={item.name}
           >
             {/* Content Container */}
-            <div className="relative z-30 flex flex-col space-y-4">
+            <div className="relative z-20 flex flex-col space-y-4">
               {/* Quote */}
               <p className="text-sm leading-6 text-gray-300">{item.quote}</p>
               
@@ -128,7 +128,7 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
 
             {/* Background Image with curved separation */}
             <div className="absolute inset-0 opacity-0 group-hover:opacity-90 transition-opacity duration-300">
-              <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-transparent z-20" 
+              <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-transparent z-10" 
                    style={{
                      clipPath: "ellipse(100% 60% at 50% 40%)"
                    }}
