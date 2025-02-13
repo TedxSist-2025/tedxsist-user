@@ -1,6 +1,8 @@
 "use client";
 import { PhoneCall } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import {
   Accordion,
   AccordionContent,
@@ -12,6 +14,52 @@ import { useState } from "react";
 
 export function FAQ2() {
   const [openItem, setOpenItem] = useState<number | null>(null);
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, {
+    once: false,
+    margin: "-100px",
+  });
+
+  const titleVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 1, ease: [0.4, 0, 0.2, 1] },
+    },
+  };
+
+  const subtitleVariants = {
+    hidden: { opacity: 0, y: 20, rotateX: 15 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      transition: { duration: 1, ease: [0.4, 0, 0.2, 1], delay: 0.1 },
+    },
+  };
+
+  const badgeVariants = {
+     hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 1, ease: [0.4, 0, 0.2, 1] },
+    },
+  };
+
+  const buttonVariants = {
+     hidden: { opacity: 0, y: 20, rotateX: 15 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      transition: { duration: 1, ease: [0.4, 0, 0.2, 1], delay: 0.1 },
+    },
+  };
+
   const faqItems = [
     {
       question: "What is TEDxSIST?",
@@ -47,57 +95,87 @@ export function FAQ2() {
     <section id="faq-section" className="py-24 bg-background">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex flex-col gap-16">
-          {/* Header Section - Keeping it centered */}
-          <div className="text-center space-y-6">
+          <div className="text-center space-y-6" ref={containerRef}>
             <div className="space-y-4">
-              <Badge variant="outline" className="px-2 py-0.1 text-xs sm:text-sm font-medium uppercase rounded-full border-[#EB0028] text-[#EB0028]">
-                FAQ
-              </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+              <motion.div
+                variants={badgeVariants}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+              >
+                <Badge 
+                  variant="outline" 
+                  className="px-2 py-0.1 text-xs sm:text-sm font-medium uppercase rounded-full border-[#EB0028] text-[#EB0028]"
+                >
+                  FAQ
+                </Badge>
+              </motion.div>
+              <motion.h2
+                className="text-4xl md:text-5xl font-bold tracking-tight text-foreground"
+                variants={titleVariants}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+              >
                 <span className="text-primary">Everything You</span> Need to Know
-              </h2>
-              <p className="text-lg text-foreground max-w-2xl mx-auto">
+              </motion.h2>
+              <motion.p
+                className="text-lg text-foreground max-w-2xl mx-auto"
+                variants={subtitleVariants}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+              >
                 Get answers to common questions about <span className="font-bold text-[#EB0028]">TEDx</span>SIST 2025. Can&apos;t find what you&apos;re looking for? Reach out to our team directly.
-              </p>
+              </motion.p>
             </div>
-            <div className="flex justify-center gap-4">
+            <motion.div 
+              className="flex justify-center gap-4"
+              variants={buttonVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+            >
               <Button 
-  asChild
-  variant="outline" 
-  className="gap-2 hover:text-primary hover:bg-background focus:primary"
->
-  <a href="mailto:tedxsist@gmail.com">
-    Any Questions? Reach us <PhoneCall className="w-4 h-4" />
-  </a>
-</Button>
-
-            </div>
+                asChild
+                variant="outline" 
+                className="gap-2 hover:text-primary hover:bg-background focus:primary"
+              >
+                <a href="mailto:tedxsist@gmail.com">
+                  Any Questions? Reach us <PhoneCall className="w-4 h-4" />
+                </a>
+              </Button>
+            </motion.div>
           </div>
 
-          {/* Accordion Section - Left aligned questions */}
-          <div className="max-w-3xl mx-auto w-full">
+          <motion.div className="max-w-3xl mx-auto w-full" 
+          variants={titleVariants}
+          initial="hidden"
+        animate={isInView && "visible"}
+          >
             <Accordion type="single" collapsible className="w-full">
               {faqItems.map((item, index) => {
                 const isOpen = openItem === index;
                 return (
-                  <AccordionItem key={index} value={`item-${index}`} className="border-b border-foreground">
+                  <AccordionItem 
+                    key={index} 
+                    value={`item-${index}`} 
+                    className="border-b border-foreground"
+                  >
                     <AccordionTrigger 
                       className="text-lg sm:text-xl font-semibold hover:no-underline focus:no-underline flex items-start gap-4 text-foreground text-left"
                       onClick={() => setOpenItem(isOpen ? null : index)}
                     >
-                      <span className="text-[#EB0028] font-bold">{String(index + 1).padStart(2, '0')}</span>
+                      <span className="text-[#EB0028] font-bold">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
                       <span className="flex-1 text-left">{item.question}</span>
-                      <div className="ml-auto w-8 h-8 flex items-center justify-center shrink-0">
-                      </div>
+                      <div className="ml-auto w-8 h-8 flex items-center justify-center shrink-0" />
                     </AccordionTrigger>
-                    <AccordionContent className="text-base text-foreground  px-[1.3rem]">
+                    <AccordionContent className="text-base text-foreground px-[1.3rem]">
                       {item.answer}
                     </AccordionContent>
                   </AccordionItem>
                 );
               })}
             </Accordion>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
