@@ -4,10 +4,7 @@ import React, { useRef } from "react";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { motion, useInView } from "framer-motion";
 
-const testimonialHeader = {
-  heading: "What Our Speakers Say",
-  subheading: "Voices from TEDxSIST",
-};
+
 
 export function InfiniteMovingCardsDemo() {
   const containerRef = useRef(null);
