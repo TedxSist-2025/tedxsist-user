@@ -85,7 +85,7 @@ export function FAQ2() {
                       className="text-lg sm:text-xl font-semibold hover:no-underline focus:no-underline flex items-start gap-4 text-foreground text-left"
                       onClick={() => setOpenItem(isOpen ? null : index)}
                     >
-                      <span className="text-[#EB0028] font-bold">{String(index + 1).padStart(2, '0')}.</span>
+                      <span className="text-[#EB0028] font-bold">{String(index + 1).padStart(2, '0')}</span>
                       <span className="flex-1 text-left">{item.question}</span>
                       <div className="ml-auto w-8 h-8 flex items-center justify-center shrink-0">
                       </div>
