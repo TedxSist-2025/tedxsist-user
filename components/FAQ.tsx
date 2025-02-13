@@ -99,8 +99,12 @@ export function FAQ2() {
             <div className="space-y-4">
               <motion.div
                 variants={badgeVariants}
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
+                whileInView="visible"
+  viewport={{ once: false, amount: 0.5 }}
+          
+          
+          initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
               >
                 <Badge 
                   variant="outline" 
@@ -112,16 +116,24 @@ export function FAQ2() {
               <motion.h2
                 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground"
                 variants={titleVariants}
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
+                whileInView="visible"
+  viewport={{ once: false, amount: 0.5 }}
+          
+          
+          initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
               >
                 <span className="text-primary">Everything You</span> Need to Know
               </motion.h2>
               <motion.p
                 className="text-lg text-foreground max-w-2xl mx-auto"
                 variants={subtitleVariants}
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
+                whileInView="visible"
+  viewport={{ once: false, amount: 0.5 }}
+          
+          
+          initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
               >
                 Get answers to common questions about <span className="font-bold text-[#EB0028]">TEDx</span>SIST 2025. Can&apos;t find what you&apos;re looking for? Reach out to our team directly.
               </motion.p>
@@ -129,8 +141,12 @@ export function FAQ2() {
             <motion.div 
               className="flex justify-center gap-4"
               variants={buttonVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
+              whileInView="visible"
+  viewport={{ once: false, amount: 0.5 }}
+         
+          
+          initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
             >
               <Button 
                 asChild
@@ -145,9 +161,12 @@ export function FAQ2() {
           </div>
 
           <motion.div className="max-w-3xl mx-auto w-full" 
+            whileInView="visible"
+  viewport={{ once: false, amount: 0.5 }}
           variants={titleVariants}
+          
           initial="hidden"
-        animate={isInView && "visible"}
+        animate={isInView ? "visible" : "hidden"}
           >
             <Accordion type="single" collapsible className="w-full">
               {faqItems.map((item, index) => {
