@@ -77,7 +77,7 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
       } else if (speed === "normal") {
         containerRef.current.style.setProperty("--animation-duration", "60s");
       } else {
-        containerRef.current.style.setProperty("--animation-duration", "45s");
+        containerRef.current.style.setProperty("--animation-duration", "80s");
       }
     }
   };
