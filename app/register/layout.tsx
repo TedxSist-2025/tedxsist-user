@@ -4,7 +4,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     
     <>
-        <main>
+        <main className="pt-24">
             <AuthProvider>
       {children}
     </AuthProvider>

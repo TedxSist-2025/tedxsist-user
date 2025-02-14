@@ -4,8 +4,6 @@ import React, { useRef } from "react";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { motion, useInView } from "framer-motion";
 
-
-
 export function InfiniteMovingCardsDemo() {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, {
@@ -34,20 +32,23 @@ export function InfiniteMovingCardsDemo() {
   };
 
   const cardContainerVariants = {
-  hidden: { opacity: 0 },
-  visible: { 
-    opacity: 1,
-    transition: { duration: 0.3 }
-  }
-};
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { duration: 0.3 }
+    }
+  };
 
-const cardVariants = {
-  hidden: { opacity: 0 },
-  visible: { 
-    opacity: 1,
-    transition: { duration: 0.3 }
-  }
-};
+  const cardVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { duration: 0.3 }
+    }
+  };
+
+  // Combine all testimonials for mobile view
+  const allTestimonials = [...leftTestimonials, ...centerTestimonials, ...rightTestimonials];
 
   return (
     <div ref={containerRef} className="py-20 flex flex-col items-center justify-center gap-8">
@@ -70,8 +71,31 @@ const cardVariants = {
         </motion.p>
       </div>
 
+      {/* Mobile view */}
       <motion.div
-        className="relative flex gap-x-0 overflow-hidden"
+        className="relative flex md:hidden w-full overflow-hidden"
+        variants={cardContainerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
+        <motion.div
+          className="relative w-full perspective-1000"
+          variants={cardVariants}
+        >
+          <div className="absolute left-0 top-0 z-10 h-full w-[100px] bg-gradient-to-r from-background to-transparent" />
+          <div className="absolute right-0 top-0 z-10 h-full w-[100px] bg-gradient-to-l from-background to-transparent" />
+          <InfiniteMovingCards
+            items={allTestimonials}
+            direction="top"
+            speed="slow"
+            className="w-full"
+          />
+        </motion.div>
+      </motion.div>
+
+      {/* Desktop view */}
+      <motion.div
+        className="relative hidden md:flex gap-x-0 overflow-hidden"
         variants={cardContainerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}

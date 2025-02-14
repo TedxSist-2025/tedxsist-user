@@ -110,7 +110,7 @@ router.push('/register');
 if (isRegistered === null) {
   return(
     <ProtectedRoute>
-     <main className="bg-background flex min-h-screen flex-col items-center justify-center">
+     <main className="bg-background flex min-h-screen flex-col items-center justify-center  py-24">
         <div className="space-y-4 text-center">
           <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
           <p className="text-muted-foreground">Loading...</p>
@@ -125,7 +125,7 @@ if (isRegistered === null) {
     return (
       <ProtectedRoute>
       <div className="flex items-center justify-center h-screen">
-        <p className="text-lg font-semibold">You have already registered for TEDxSIST 2025.</p>
+        <p className="text-lg font-semibold">You have registered for TEDxSIST 2025.</p>
       </div>
       </ProtectedRoute>
     );
