@@ -35,7 +35,7 @@ export function InfiniteMovingCardsDemo() {
     hidden: { opacity: 0 },
     visible: { 
       opacity: 1,
-      transition: { duration: 0.3 }
+      transition: { duration: 0.5 }
     }
   };
 
@@ -43,7 +43,7 @@ export function InfiniteMovingCardsDemo() {
     hidden: { opacity: 0 },
     visible: { 
       opacity: 1,
-      transition: { duration: 0.3 }
+      transition: { duration: 0.5 }
     }
   };
 
@@ -54,14 +54,17 @@ export function InfiniteMovingCardsDemo() {
     <div ref={containerRef} className="py-20 flex flex-col items-center justify-center gap-8">
       <div className="text-center space-y-4">
         <motion.h1
+         whileInView="visible"
           className="text-4xl font-bold text-foreground"
           variants={titleVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
+          viewport={{ once: false, amount: 0.5 }}
         >
           What Our <span className="text-primary">Speakers</span> Say
         </motion.h1>
         <motion.p
+        
           className="text-xl text-muted-foreground text-bold" 
           variants={subtitleVariants}
           initial="hidden"
