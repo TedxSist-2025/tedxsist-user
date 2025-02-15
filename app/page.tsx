@@ -96,11 +96,12 @@ export default function HomePage() {
         titleComponent={
           <motion.div
             ref={ref}
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.9 }} // Move delay inside transition
+            initial={{ opacity: 0, y: 15 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0 }}
+            transition={{ duration: 1 , ease: [0.25, 0.4, 0.25, 1]}} // Move delay inside transition
             className="w-full flex justify-center"
           >
+            
             <h1 className="text-4xl font-semibold text-foreground dark:text-foreground">
               Glimpses <span className="text-primary">Of</span> <br />
               <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
