@@ -1,11 +1,35 @@
+"use client";
 import { InfiniteMovingCardsDemo } from "@/components/Testimonials";
 import { FAQ2 } from "@/components/FAQ";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import Image from "next/image";
 import HeroScrollDemo from "@/components/hero-section";
+import AdaptiveCursor from "@/components/AdaptiveCursor";
+import { useState, useEffect } from "react";
 export default function HomePage() {
+  const [cursorVariant, setCursorVariant] = useState("default")
+
+  useEffect(() => {
+    const handleMouseEnter = () => setCursorVariant("hover")
+    const handleMouseLeave = () => setCursorVariant("default")
+
+    document.querySelectorAll("a, button").forEach((el) => {
+      el.addEventListener("mouseenter", handleMouseEnter)
+      el.addEventListener("mouseleave", handleMouseLeave)
+    })
+
+    return () => {
+      document.querySelectorAll("a, button").forEach((el) => {
+        el.removeEventListener("mouseenter", handleMouseEnter)
+        el.removeEventListener("mouseleave", handleMouseLeave)
+      })
+    }
+  }, [])
   return (
     <main>
+    
+      <AdaptiveCursor variant={cursorVariant} />
+ 
       <div>
         
         <HeroScrollDemo />
@@ -15,9 +39,9 @@ export default function HomePage() {
         titleComponent={
           <>
             <h1 className="text-4xl font-semibold text-foreground dark:text-foreground">
-              lorem ipsum  <br />
+              Glimpses <span className="text-primary">Of</span> <br />
               <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
-                TEDxSIST 2025
+                <span className="text-primary">TEDx</span>SIST
               </span>
             </h1>
           </>

@@ -3,6 +3,9 @@ import { cn } from "@/lib/utils";
 import { motion, type MotionValue } from "framer-motion";
 import { TypewriterBackspace } from "@/components/ui/typewriter-effect";
 import { Spotlight } from "./spotlight-new";
+import { ArrowRight } from "lucide-react"
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
+import { useRouter } from "next/navigation";
 
 const transition = {
   duration: 2,
@@ -30,28 +33,90 @@ export const GoogleGeminiEffect = ({
     },
     
   ];
-
+  const router = useRouter();
   return (
     <div className={cn("sticky top-20", className)}>
     <div className={cn("relative w-full min-h-[890px]", className)}>
       <div className="absolute inset-0 flex flex-col items-center justify-start pt-20 z-10">
         <Spotlight />
-        <div className="text-center space-y-4">
-          <p className="text-neutral-300 dark:text-neutral-300 text-sm sm:text-base">
-            The road to freedom starts from here
-          </p>
-          
-          <h1 className="flex flex-col items-center gap-2">
-            <span className="text-4xl md:text-[6rem] font-bold leading-none">
-              <span className="text-primary">TEDx</span>SIST 2025
-            </span>
-            <TypewriterBackspace words={words} />
-          </h1>
-
-          <button className="font-bold bg-white text-black rounded-full px-8 py-2 md:px-10 md:py-3 text-sm md:text-base mt-8 md:mt-12 hover:bg-gray-100 transition-colors">
-            Register Now
-          </button>
-        </div>
+       <div className="text-center space-y-4">
+      <motion.p 
+        initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 1,
+        delay: 0,
+        ease: [0.25, 0.4, 0.25, 1]
+      }}
+        className="text-neutral-300 dark:text-neutral-300 text-md sm:text-md md:text-lg lg:text-xl"
+      >
+        Registrations Open!!
+      </motion.p>
+      
+      <motion.h1 
+       initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 1,
+        delay: 0.5,
+        ease: [0.25, 0.4, 0.25, 1]
+      }}
+        className="flex flex-col items-center gap-2"
+      >
+        <motion.span 
+          initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 1,
+        delay: 0.8,
+        ease: [0.25, 0.4, 0.25, 1]
+      }}
+          className="text-4xl md:text-[6rem] font-bold leading-none"
+        >
+          <span className="text-primary">TEDx</span>SIST 2025
+        </motion.span>
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 1,
+        delay: 2,
+        ease: [0.25, 0.4, 0.25, 1]
+      }}
+          className="text-4xl md:text-[6rem] font-bold leading-none"
+        >
+          <TypewriterBackspace words={words} />
+        </motion.div>
+        
+      </motion.h1>
+    </div>
+    
+    <motion.div 
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 1,
+        delay: 2.5,
+        ease: [0.25, 0.4, 0.25, 1]
+      }}
+      className="flex justify-center mt-8"
+    >
+         
+    <HoverBorderGradient
+                    containerClassName="rounded-[60px]"
+                    as="button"
+                    className="group relative flex items-center gap-1 rounded-[60px] bg-black/90 px-12 py-3 text-sm text-primary backdrop-blur-sm transition-all duration-300 hover:bg-[#EB0028] hover:text-white hover:border-primary hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-[#EB0028]"
+                    onClick={() => router.push("/register")}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="relative z-10 text-xl font-bold">Register</span>
+                      <ArrowRight className="font-bold relative z-10 h-6 w-6 transition-transform duration-300 group-hover:translate-x-1" />
+      <div className="absolute inset-0 rounded-full border border-white/10" />
+      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/[0.03] to-transparent" />
+                    </div>
+                  </HoverBorderGradient>
+    </motion.div>
+      
       </div>
 </div>
       <svg

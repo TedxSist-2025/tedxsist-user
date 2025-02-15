@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { motion, stagger, useAnimate, useInView } from "framer-motion";
-import { useEffect,useState,useCallback,useRef  } from "react";
+import { useEffect,useState } from "react";
 
 export const TypewriterEffect = ({
   words,
@@ -186,14 +186,12 @@ export const TypewriterEffectSmooth = ({
   );
 };
 
-
-
-interface Word {
+export interface Word {
   text: string;
   className?: string;
 }
 
-interface TypewriterBackspaceProps {
+export interface TypewriterBackspaceProps {
   words: Word[];
   className?: string;
   cursorClassName?: string;
@@ -205,72 +203,41 @@ export const TypewriterBackspace: React.FC<TypewriterBackspaceProps> = ({
   cursorClassName,
 }) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [currentText, setCurrentText] = useState("");
+  const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // Create audio elements
-  const [typeSound] = useState(() => new Audio("/type.mp3"));
-  const [deleteSound] = useState(() => new Audio("/delete.mp3"));
-  const [completeSound] = useState(() => new Audio("/complete.mp3"));
-
-  // Configure sounds
+  const [hasStarted, setHasStarted] = useState(false);
+  
   useEffect(() => {
-    typeSound.volume = 0.2;
-    deleteSound.volume = 0.15;
-    completeSound.volume = 0.3;
-
-    typeSound.preload = "auto";
-    deleteSound.preload = "auto";
-    completeSound.preload = "auto";
-  }, [typeSound, deleteSound, completeSound]);
-
-  // Observer to check visibility
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.3 }
-    );
-
-    if (containerRef.current) observer.observe(containerRef.current);
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Play sound only if visible
-  const playSound = useCallback(
-    (audio: HTMLAudioElement) => {
-      if (!isVisible) return;
-      const clone = audio.cloneNode() as HTMLAudioElement;
-      clone.play().catch((e) => console.log("Audio playback failed:", e));
-      clone.addEventListener("ended", () => clone.remove());
-    },
-    [isVisible]
-  );
-
-  useEffect(() => {
+    // Initial delay of 2 seconds to match the parent motion.div
+    const initialDelay = 2500;
+    
+    if (!hasStarted) {
+      const startTimeout = setTimeout(() => {
+        setHasStarted(true);
+      }, initialDelay);
+      
+      return () => clearTimeout(startTimeout);
+    }
+    
     const typeSpeed = 150;
     const deleteSpeed = 75;
     const pauseTime = 1000;
 
     const type = () => {
-      if (!isVisible) return;
-
       const currentWord = words[currentWordIndex].text;
-
+      
       if (!isDeleting) {
+        // Typing
         if (currentText.length < currentWord.length) {
           setCurrentText(currentWord.slice(0, currentText.length + 1));
-          playSound(typeSound);
         } else {
-          playSound(completeSound);
+          // Start deleting after pause
           setTimeout(() => setIsDeleting(true), pauseTime);
         }
       } else {
+        // Deleting
         if (currentText.length > 0) {
           setCurrentText(currentWord.slice(0, currentText.length - 1));
-          playSound(deleteSound);
         } else {
           setIsDeleting(false);
           setCurrentWordIndex((prev) => (prev + 1) % words.length);
@@ -278,23 +245,25 @@ export const TypewriterBackspace: React.FC<TypewriterBackspaceProps> = ({
       }
     };
 
-    const timeout = setTimeout(type, isDeleting ? deleteSpeed : typeSpeed);
+    const timeout = setTimeout(
+      type,
+      isDeleting ? deleteSpeed : typeSpeed
+    );
 
     return () => clearTimeout(timeout);
-  }, [currentText, isDeleting, currentWordIndex, words, playSound, isVisible]);
+  }, [currentText, isDeleting, currentWordIndex, words, hasStarted]);
 
   return (
-    <div ref={containerRef} className={cn("flex space-x-1 my-6", className)}>
+    <div className={cn("flex space-x-1 my-6", className)}>
       <div className="overflow-hidden pb-2">
         <div
-          className="text-xs sm:text-base md:text-xl lg:text-2xl xl:text-3xl font-bold"
+          className="text-xs sm:text-base md:text-xl lg:text:2xl xl:text-3xl font-bold"
           style={{ whiteSpace: "nowrap" }}
         >
           <span className="dark:text-primary text-white">
             Igniting Ideas, Inspiring Change.
-          </span>
-          &nbsp;
-          <span
+          </span>&nbsp;
+          <span 
             className={cn(
               "dark:text-primary text-primary",
               words[currentWordIndex].className

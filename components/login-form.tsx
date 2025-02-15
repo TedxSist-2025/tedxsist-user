@@ -56,7 +56,7 @@ export function LoginForm({
                   htmlFor="terms"
                   className="text-sm text-muted-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
-                  I agree to attend the event in person and accept the terms of participation. I understand that by registering, I consent to share my information for event-related communications and acknowledge that photography/recording may occur during the event.
+                  I agree to attend the event in person and accept the terms of participation. I understand that by registering, I consent to share my information for event-related communications and acknowledge that photography/recording may occur during the event. I understand that registration will not comfirm my seat and there will be a shortlisting process to select 100 participants.
                 </label>
               </div>
 

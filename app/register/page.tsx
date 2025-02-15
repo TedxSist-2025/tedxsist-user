@@ -38,7 +38,7 @@ export default function RegisterPage() {
       <section className="w-full max-w-sm md:max-w-4xl space-y-6">
         <div className="space-y-2">
           <h1 className="text-3xl md:text-4xl font-bold text-center text-foreground">
-            Register for TEDxSIST 2025
+            Register for <span className="text-primary">TEDx</span>SIST 2025
           </h1>
           <p className="text-center text-muted-foreground">
             Join us for an inspiring event of innovation and ideas.

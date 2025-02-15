@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { useRouter, usePathname } from "next/navigation"
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -23,7 +23,7 @@ const navigationMenuTriggerStyle = cva(
   {
     variants: {
       isActive: {
-        true: "after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary ",
+        true: "after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary",
         false: "after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"
       }
     },
