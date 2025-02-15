@@ -113,7 +113,7 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
                     alt={item.name}
                     className="object-cover"
                   />
-                  <AvatarFallback className="bg-zinc-800 text-zinc-400">
+                  <AvatarFallback className="bg-[#930019] text-zinc-300">
                     {item.name[0]}
                   </AvatarFallback>
                 </Avatar>

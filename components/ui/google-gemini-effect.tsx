@@ -58,7 +58,7 @@ export const GoogleGeminiEffect = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{
         duration: 1,
-        delay: 0.5,
+        delay: 0.4,
         ease: [0.25, 0.4, 0.25, 1]
       }}
         className="flex flex-col items-center gap-2"
@@ -80,7 +80,7 @@ export const GoogleGeminiEffect = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{
         duration: 1,
-        delay: 2,
+        delay: 1.2,
         ease: [0.25, 0.4, 0.25, 1]
       }}
           className="text-4xl md:text-[6rem] font-bold leading-none"
@@ -96,7 +96,7 @@ export const GoogleGeminiEffect = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{
         duration: 1,
-        delay: 2.5,
+        delay: 1.6,
         ease: [0.25, 0.4, 0.25, 1]
       }}
       className="flex justify-center mt-8"
@@ -121,8 +121,8 @@ export const GoogleGeminiEffect = ({
 </div>
       <svg
         width="1440"
-        height="890"
-        viewBox="0 0 1440 890"
+        height="760"
+        viewBox="0 0 1440 780"
         xmlns="http://www.w3.org/2000/svg"
         className="absolute inset-0 w-full h-full"
       >

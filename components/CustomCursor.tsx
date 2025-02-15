@@ -7,22 +7,29 @@ const cursorVariants = {
   default: {
     width: 32,
     height: 32,
+    borderRadius: "50%",
     backgroundColor: "rgba(255, 255, 255, 0.2)",
-    border: "1px solid rgba(255, 255, 255, 0.4)",
+    border: "1px solid rgba(255, 255, 0.4)",
     transition: { type: "spring", stiffness: 500, damping: 28 },
   },
   hover: {
     width: 64,
     height: 64,
+    borderRadius: "50%",
     backgroundColor: "rgba(255, 255, 255, 0.4)",
-    border: "1px solid rgba(255, 255, 255, 0.6)",
+    border: "1px solid rgba(255, 255, 0.6)",
     transition: { type: "spring", stiffness: 500, damping: 28 },
+  },
+  hidden: {
+    opacity: 0,
+    transition: { duration: 0.2 },
   },
 }
 
-export default function CustomCursor({ variant }: { variant: "default" | "hover" }) {
+export default function CustomCursor({ isHidden = false }: { isHidden?: boolean }) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isTouchDevice, setIsTouchDevice] = useState(false)
+  const [cursorVariant, setCursorVariant] = useState<"default" | "hover" | "hidden">("default")
 
   useEffect(() => {
     const checkTouch = () => {
@@ -36,26 +43,47 @@ export default function CustomCursor({ variant }: { variant: "default" | "hover"
   }, [])
 
   useEffect(() => {
-    if (isTouchDevice) return
+    if (isTouchDevice || isHidden) {
+      setCursorVariant("hidden")
+      return
+    }
 
     const mouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
 
-    window.addEventListener("mousemove", mouseMove)
-    return () => window.removeEventListener("mousemove", mouseMove)
-  }, [isTouchDevice])
+    const mouseEnter = (e: Event) => {
+      const target = e.target as HTMLElement | null
+      if (target && target.closest && target.closest("button, a, [role='button']")) {
+        setCursorVariant("hover")
+      }
+    }
 
-  if (isTouchDevice) return null // Don't render on touch devices
+    const mouseLeave = () => setCursorVariant("default")
+
+    window.addEventListener("mousemove", mouseMove)
+    document.addEventListener("mouseenter", mouseEnter, true)
+    document.addEventListener("mouseleave", mouseLeave, true)
+
+    return () => {
+      window.removeEventListener("mousemove", mouseMove)
+      document.removeEventListener("mouseenter", mouseEnter, true)
+      document.removeEventListener("mouseleave", mouseLeave, true)
+    }
+  }, [isTouchDevice, isHidden])
+
+  if (isTouchDevice) return null
 
   return (
     <motion.div
-      className="pointer-events-none fixed left-0 top-0 z-50 rounded-full mix-blend-difference"
-      animate={variant}
+      className="pointer-events-none fixed left-0 top-0 z-50 mix-blend-difference"
+      animate={cursorVariant}
       variants={cursorVariants}
       style={{
         left: mousePosition.x - 16,
         top: mousePosition.y - 16,
+        position: "fixed",
+        pointerEvents: "none",
       }}
     />
   )

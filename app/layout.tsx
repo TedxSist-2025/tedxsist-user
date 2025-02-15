@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "TEDxSIST",
-  description: "TEDxSIST",
+  description: "TEDxSIST, official website for TEDx event at SIST",
 };
 
 export default function RootLayout({
@@ -45,4 +45,3 @@ export default function RootLayout({
     </html>
   );
 }
-
