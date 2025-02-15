@@ -49,6 +49,7 @@ const Navbar = () => {
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/events", label: "Events" },
+    { href: "/blogs", label: "Blogs" },
     { href: "/#faq-section", label: "FAQs" },
   ]
 
@@ -85,13 +86,14 @@ const Navbar = () => {
   return (
     <FAQContext.Provider value={{ isFAQVisible, setIsFAQVisible }}>
       <nav
-        className={cn(
-          "fixed top-4 left-0 w-full z-50",
-          isScrolled
-            ? "top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-7xl bg-background/30 backdrop-blur-lg rounded-2xl shadow-[0px_5px_18px_rgba(204,_204,_204,_0.1)] border border-transparent"
-            : "bg-transparent shadow-none border-none border-brand-neutrals-900 "
-        )}
-      >
+  className={cn(
+    "fixed top-4 left-1/2 z-50 transform -translate-x-1/2 w-11/12 max-w-7xl",
+    // Change this condition to also apply the background when menu is open
+    isScrolled || isOpen
+      ? "top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-7xl bg-background/30 backdrop-blur-lg rounded-2xl shadow-[0px_5px_18px_rgba(204,_204,_204,_0.1)] border border-transparent"
+      : "bg-transparent shadow-none border-none border-brand-neutrals-900 "
+  )}
+>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
