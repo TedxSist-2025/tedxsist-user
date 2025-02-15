@@ -39,7 +39,7 @@ const StatsCard = ({ stats }) => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ margin: "-50px" }} // No 'once: true' to allow retriggering
-            transition={{ delay: index * 0.3, duration: 0.8, ease: [0.6, 0.05, 0.01, 0.9] }}
+            transition={{ delay: index * 0.1, duration: 0.8, ease: [0.6, 0.05, 0.01, 0.9] }}
           >
             <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
               <Card className="bg-background shadow-lg hover:shadow-xl transition-shadow duration-300">
