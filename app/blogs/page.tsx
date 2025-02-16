@@ -112,6 +112,7 @@ const items = [
   },
   {
     title: "TEDxSIST 2025: Resilience",
+    slug: "grit-and-sweat-behind-resilience",
     description: "Experience TEDxSIST 2025, where resilience meets innovation. Engage with thought-provoking talks, connect with visionary speakers, and expand your network in an inspiring environment that fosters creativity, transformation, and impactful ideas shaping the future.",
     header: <Skeleton />, 
     className: "md:col-span-2",
