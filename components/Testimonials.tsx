@@ -112,7 +112,6 @@ export function InfiniteMovingCardsDemo() {
               items={items}
               direction={index === 2 ? "bottom" : "top"}
               speed="slow"
-              rowPosition={index === 0 ? "left" : index === 1 ? "center" : "right"}
               className="w-full"
             />
           </motion.div>

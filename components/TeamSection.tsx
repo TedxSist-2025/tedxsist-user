@@ -5,7 +5,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 
-const teams = [
+interface Testimonial {
+  id: number;
+  quote: string;
+  name: string;
+  designation: string;
+  src: string;
+}
+
+type TeamName = "Chairpersons" | "Curation Team" | "Finance Team" | "Operations Team" | "Production Team" | "Tech Team";
+
+const teams: TeamName[] = [
   "Chairpersons",
   "Curation Team",
   "Finance Team",
@@ -14,7 +24,7 @@ const teams = [
   "Tech Team",
 ];
 
-const testimonialsByTeam = {
+const testimonialsByTeam: Record<TeamName, Testimonial[]> = {
   "Chairpersons": [
     {
       id: 1,
@@ -170,12 +180,25 @@ const testimonialsByTeam = {
   ],
 };
 
+interface Tab {
+  title: TeamName;
+  value: TeamName;
+  content: React.ReactNode;
+}
 
 const tabs = teams.map((team) => ({
   title: team,
   value: team,
-  content: <AnimatedTestimonials testimonials={testimonialsByTeam[team] || []} />,
+  content: <AnimatedTestimonials testimonials={testimonialsByTeam[team]} />,
 }));
+
+interface TabsProps {
+  tabs: Tab[];
+  containerClassName?: string;
+  activeTabClassName?: string;
+  tabClassName?: string;
+  contentClassName?: string;
+}
 
 const Tabs = ({
   tabs: propTabs,
@@ -183,9 +206,8 @@ const Tabs = ({
   activeTabClassName,
   tabClassName,
   contentClassName,
-}) => {
+}: TabsProps) => {
   const [active, setActive] = useState(propTabs[0]);
-  const [hovering, setHovering] = useState(false);
 
   return (
     <>
@@ -199,8 +221,6 @@ const Tabs = ({
           <button
             key={tab.title}
             onClick={() => setActive(tab)}
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
             className={cn(
               "relative",
               tabClassName,

@@ -1,6 +1,32 @@
 import { formatRelativeTime } from '@/lib/time-ago'
 
-export const blogData = {
+interface BlogSection {
+  title: string;
+  content: string;
+}
+
+interface BlogAuthor {
+  name: string;
+  avatar: string;
+}
+
+interface BlogBadge {
+  icon: string;
+  text: string;
+}
+
+interface BlogPost {
+  image: string;
+  badge: BlogBadge;
+  className: string;
+  title: string;
+  author: BlogAuthor;
+  description: string;
+  timeAgo: string;
+  sections: BlogSection[];
+}
+
+export const blogData: Record<string, BlogPost> = {
   'tedx-sist-2025': {
     image: "/placeholder.svg",
     badge: { icon: "🎯", text: "Featured" },

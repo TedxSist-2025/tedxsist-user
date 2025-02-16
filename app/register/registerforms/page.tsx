@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState, useCallback } from "react";
 import { Label } from "@/components/ui/label2";
-import { Input } from "@/components/ui/input2";
+import Input from "@/components/ui/input2";
 import { cn } from "@/lib/utils";
 import ProtectedRoute from "@/components/protected-route";
-import { Textarea } from "@/components/ui/textarea2";
+import Textarea from "@/components/ui/textarea2";
 import { useAuth } from "@/context/auth-context";
 import { useToast } from "@/hooks/use-toast";
 import { db } from "@/firebase/firebase-client"; // Ensure Firestore is properly configured

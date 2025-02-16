@@ -7,7 +7,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-const AnimatedCounter = ({ value, duration = 2, inView }) => {
+interface AnimatedCounterProps {
+  value: number;
+  duration?: number;
+  inView: boolean;
+}
+
+const AnimatedCounter = ({ value, duration = 2, inView }: AnimatedCounterProps) => {
   const count = useMotionValue(0);
   const rounded = useTransform(count, (latest) => Math.round(latest));
 
@@ -20,21 +26,32 @@ const AnimatedCounter = ({ value, duration = 2, inView }) => {
       });
       return () => controls.stop();
     }
-  }, [value, inView, count]);
+  }, [value, inView, count, duration]);
 
   return <motion.span>{rounded}</motion.span>;
 };
 
-const StatsCard = ({ stats }) => {
+interface Stat {
+  label: string;
+  value: number;
+  suffix: string;
+  description: string;
+}
+
+interface StatsCardProps {
+  stats: Stat[];
+}
+
+const StatsCard: React.FC<StatsCardProps> = ({ stats }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const cardInView = useInView(cardRef, { margin: "-50px" });
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
       {stats.map((stat, index) => {
-        const ref = useRef(null);
-        const isInView = useInView(ref, { margin: "-50px" }); // Remove 'once: true' to trigger every time
-
         return (
           <motion.div
-            ref={ref}
+            ref={cardRef}
             key={stat.label}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -50,7 +67,7 @@ const StatsCard = ({ stats }) => {
                     viewport={{ margin: "-50px" }}
                   >
                     <CardTitle className="text-center text-5xl font-bold text-primary">
-                      <AnimatedCounter value={stat.value} inView={isInView} />
+                      <AnimatedCounter value={stat.value} inView={cardInView} />
                       {stat.suffix}
                     </CardTitle>
                   </motion.div>
@@ -68,7 +85,7 @@ const StatsCard = ({ stats }) => {
 };
 
 const StatisticsSection = () => {
-  const stats = [
+  const stats: Stat[] = [
     {
       label: "Client Success Rate",
       value: 98,

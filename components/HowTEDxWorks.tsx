@@ -3,7 +3,12 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
-const steps = [
+interface Step {
+  title: string;
+  description: string;
+}
+
+const steps: Step[] = [
   {
     title: "Curating Inspiring Themes",
     description:
@@ -31,9 +36,15 @@ const steps = [
   },
 ];
 
-const TimelineItem = ({ step, index, isOdd }) => {
-  const cardRef = useRef(null);
-  const markerRef = useRef(null);
+interface TimelineItemProps {
+  step: Step;
+  index: number;
+  isOdd: boolean;
+}
+
+const TimelineItem: React.FC<TimelineItemProps> = ({ step, index, isOdd }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const markerRef = useRef<HTMLDivElement>(null);
 
   // Run animations only after client hydration
   const [isHydrated, setIsHydrated] = useState(false);

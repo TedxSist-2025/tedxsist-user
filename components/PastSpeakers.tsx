@@ -5,9 +5,17 @@ import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials"
 
-const years = [2024, 2023, 2022]
+interface Testimonial {
+  quote: string;
+  name: string;
+  designation: string;
+  src: string;
+}
 
-const testimonials2024 = [
+type Year = 2024 | 2023 | 2022;
+const years = [2024, 2023, 2022] as const;
+
+const testimonials2024: Testimonial[] = [
   {
     quote: "The latest features and improvements have made this platform indispensable for our team's daily operations.",
     name: "Sarah Chen",
@@ -28,7 +36,7 @@ const testimonials2024 = [
   },
 ]
 
-const testimonials2023 = [
+const testimonials2023: Testimonial[] = [
   {
     quote: "The platform's reliability and performance throughout 2023 exceeded all expectations.",
     name: "David Park",
@@ -49,7 +57,7 @@ const testimonials2023 = [
   },
 ]
 
-const testimonials2022 = [
+const testimonials2022: Testimonial[] = [
   {
     quote: "Being an early adopter in 2022 was one of our best strategic decisions.",
     name: "Lisa Thompson",
@@ -70,8 +78,8 @@ const testimonials2022 = [
   },
 ]
 
-const createYearContent = (year: number) => {
-  const testimonialsByYear = {
+const createYearContent = (year: Year) => {
+  const testimonialsByYear: Record<Year, Testimonial[]> = {
     2024: testimonials2024,
     2023: testimonials2023,
     2022: testimonials2022,
@@ -82,7 +90,7 @@ const createYearContent = (year: number) => {
 const tabs = years.map(year => ({
   title: year.toString(),
   value: year.toString(),
-  content: createYearContent(year)
+  content: createYearContent(year as Year)
 }))
 
 export default function PastSpeakers() {
@@ -108,7 +116,7 @@ export default function PastSpeakers() {
 type Tab = {
   title: string;
   value: string;
-  content?: string | React.ReactNode | any;
+  content?: string | React.ReactNode;
 };
 
 const Tabs = ({
@@ -125,7 +133,6 @@ const Tabs = ({
   contentClassName?: string;
 }) => {
   const [active, setActive] = useState<Tab>(propTabs[0]);
-  const [hovering, setHovering] = useState(false);
 
   return (
     <>
@@ -139,8 +146,6 @@ const Tabs = ({
           <button
             key={tab.title}
             onClick={() => setActive(tab)}
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
             className={cn(
               "relative",
               tabClassName,

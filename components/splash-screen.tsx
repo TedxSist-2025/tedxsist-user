@@ -21,16 +21,7 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
     }
 
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%";
-    let progressInterval: NodeJS.Timeout;
-    let matrixInterval: NodeJS.Timeout;
-
-    matrixInterval = setInterval(() => {
-      setMatrixText(
-        Array.from({ length: 8 }, () => characters.charAt(Math.floor(Math.random() * characters.length))).join("")
-      );
-    }, 50);
-
-    progressInterval = setInterval(() => {
+    const progressInterval: NodeJS.Timeout = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(progressInterval);
@@ -44,6 +35,12 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
         return prev + 1;
       });
     }, 30);
+
+    const matrixInterval: NodeJS.Timeout = setInterval(() => {
+      setMatrixText(
+        Array.from({ length: 8 }, () => characters.charAt(Math.floor(Math.random() * characters.length))).join("")
+      );
+    }, 50);
 
     return () => {
       clearInterval(progressInterval);

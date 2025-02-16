@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { motion, stagger, useAnimate, useInView } from "framer-motion";
-import { useEffect,useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 export const TypewriterEffect = ({
   words,
@@ -26,23 +26,28 @@ export const TypewriterEffect = ({
 
   const [scope, animate] = useAnimate();
   const isInView = useInView(scope);
+
+  const animateText = useCallback(() => {
+    animate(
+      "span",
+      {
+        display: "inline-block",
+        opacity: 1,
+        width: "fit-content",
+      },
+      {
+        duration: 0.3,
+        delay: stagger(0.1),
+        ease: "easeInOut",
+      }
+    );
+  }, [animate]);
+
   useEffect(() => {
     if (isInView) {
-      animate(
-        "span",
-        {
-          display: "inline-block",
-          opacity: 1,
-          width: "fit-content",
-        },
-        {
-          duration: 0.3,
-          delay: stagger(0.1),
-          ease: "easeInOut",
-        }
-      );
+      animateText();
     }
-  }, [isInView]);
+  }, [isInView, animateText]);
 
   const renderWords = () => {
     return (
@@ -249,6 +254,38 @@ export const TypewriterBackspace: React.FC<TypewriterBackspaceProps> = ({
       type,
       isDeleting ? deleteSpeed : typeSpeed
     );
+
+    return () => clearTimeout(timeout);
+  }, [currentText, isDeleting, currentWordIndex, words, hasStarted]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setHasStarted(true);
+    }, 150);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+    
+    const timeout = setTimeout(() => {
+      if (isDeleting) {
+        if (currentText === "") {
+          setIsDeleting(false);
+          setCurrentWordIndex((prev) => (prev + 1) % words.length);
+        } else {
+          setCurrentText(currentText.slice(0, -1));
+        }
+      } else {
+        const currentWord = words[currentWordIndex];
+        if (currentText === currentWord.text) {
+          setIsDeleting(true);
+        } else {
+          setCurrentText(currentWord.text.slice(0, currentText.length + 1));
+        }
+      }
+    }, isDeleting ? 40 : 80);
 
     return () => clearTimeout(timeout);
   }, [currentText, isDeleting, currentWordIndex, words, hasStarted]);

@@ -3,9 +3,23 @@ import { adminDb } from "@/firebase/firebase-server";
 import { FieldValue } from "firebase-admin/firestore";
 import { v4 as uuidv4 } from "uuid";
 
+interface RegistrationBody {
+  firstName: string;
+  lastName: string;
+  email: string;
+  degree: string;
+  branch: string;
+  experienceResponse: string;
+  goalsResponse: string;
+  resilienceResponse: string;
+}
+
 export async function POST(req: NextRequest) {
+  let body: RegistrationBody | undefined;
+
   try {
-    const body = await req.json();
+    const data = await req.json();
+    body = data as RegistrationBody;
     const { firstName, lastName, email, degree, branch, experienceResponse, goalsResponse, resilienceResponse } = body;
 
     // Check for missing fields
@@ -67,7 +81,7 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ success: true, participantId: uuidv4() }, { status: 201 });
-  }catch (error: unknown) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
       if (error.message === "You have already registered.") {
         return NextResponse.json({ error: error.message }, { status: 409 });
@@ -76,7 +90,7 @@ export async function POST(req: NextRequest) {
       console.error("Error submitting registration", {
         error: error.message,
         stack: error.stack,
-        body: body,
+        requestData: body || 'No request data available'
       });
     } else {
       console.error("An unknown error occurred", { error });
