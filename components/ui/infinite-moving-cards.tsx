@@ -31,7 +31,7 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
 
   const getSpeed = React.useCallback(() => {
     if (containerRef.current) {
-      containerRef.current.style.setProperty("--animation-duration", "120s");
+      containerRef.current.style.setProperty("--animation-duration", "90s");
     }
   }, []);
 
@@ -80,7 +80,7 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
       <ul
         ref={scrollerRef}
         className={cn(
-          "flex flex-col min-h-full shrink-0 gap-4 px-2 w-max",
+          "flex flex-col min-h-full shrink-0 gap-4 px-3 w-max",
           start && "animate-scroll",
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
