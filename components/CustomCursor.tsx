@@ -9,7 +9,7 @@ const cursorVariants = {
     height: 32,
     borderRadius: "50%",
     backgroundColor: "rgba(255, 255, 255, 0.2)",
-    border: "1px solid rgba(255, 255, 0.4)",
+   border: "1px solid hsl(var(--border))",
     transition: { type: "spring", stiffness: 500, damping: 28 },
   },
   hover: {
@@ -17,7 +17,7 @@ const cursorVariants = {
     height: 64,
     borderRadius: "50%",
     backgroundColor: "rgba(255, 255, 255, 0.4)",
-    border: "1px solid rgba(255, 255, 0.6)",
+    border: "1px solid hsl(var(--border))",
     transition: { type: "spring", stiffness: 500, damping: 28 },
   },
   hidden: {
