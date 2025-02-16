@@ -4,18 +4,22 @@ import { cn } from "@/lib/utils";
 import { motion, stagger, useAnimate, useInView } from "framer-motion";
 import { useEffect, useState, useCallback } from "react";
 
+interface Word {
+  text: string;
+  className?: string;
+}
+
+interface TypewriterProps {
+  words: Word[];
+  className?: string;
+  cursorClassName?: string;
+}
+
 export const TypewriterEffect = ({
   words,
   className,
   cursorClassName,
-}: {
-  words: {
-    text: string;
-    className?: string;
-  }[];
-  className?: string;
-  cursorClassName?: string;
-}) => {
+}: TypewriterProps) => {
   // split text inside of words into array of characters
   const wordsArray = words.map((word) => {
     return {
@@ -107,14 +111,7 @@ export const TypewriterEffectSmooth = ({
   words,
   className,
   cursorClassName,
-}: {
-  words: {
-    text: string;
-    className?: string;
-  }[];
-  className?: string;
-  cursorClassName?: string;
-}) => {
+}: TypewriterProps) => {
   // split text inside of words into array of characters
   const wordsArray = words.map((word) => {
     return {
@@ -191,84 +188,28 @@ export const TypewriterEffectSmooth = ({
   );
 };
 
-export interface Word {
-  text: string;
-  className?: string;
-}
-
-export interface TypewriterBackspaceProps {
-  words: Word[];
-  className?: string;
-  cursorClassName?: string;
-}
-
-export const TypewriterBackspace: React.FC<TypewriterBackspaceProps> = ({
+export const TypewriterBackspace: React.FC<TypewriterProps> = ({
   words,
   className,
   cursorClassName,
 }) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [currentText, setCurrentText] = useState('');
+  const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
-  const [hasStarted, setHasStarted] = useState(false);
-  
-  useEffect(() => {
-    // Initial delay of 2 seconds to match the parent motion.div
-    const initialDelay = 2500;
-    
-    if (!hasStarted) {
-      const startTimeout = setTimeout(() => {
-        setHasStarted(true);
-      }, initialDelay);
-      
-      return () => clearTimeout(startTimeout);
-    }
-    
-    const typeSpeed = 150;
-    const deleteSpeed = 75;
-    const pauseTime = 1000;
-
-    const type = () => {
-      const currentWord = words[currentWordIndex].text;
-      
-      if (!isDeleting) {
-        // Typing
-        if (currentText.length < currentWord.length) {
-          setCurrentText(currentWord.slice(0, currentText.length + 1));
-        } else {
-          // Start deleting after pause
-          setTimeout(() => setIsDeleting(true), pauseTime);
-        }
-      } else {
-        // Deleting
-        if (currentText.length > 0) {
-          setCurrentText(currentWord.slice(0, currentText.length - 1));
-        } else {
-          setIsDeleting(false);
-          setCurrentWordIndex((prev) => (prev + 1) % words.length);
-        }
-      }
-    };
-
-    const timeout = setTimeout(
-      type,
-      isDeleting ? deleteSpeed : typeSpeed
-    );
-
-    return () => clearTimeout(timeout);
-  }, [currentText, isDeleting, currentWordIndex, words, hasStarted]);
+  const [isStarted, setIsStarted] = useState(false);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setHasStarted(true);
-    }, 150);
+    // Initial delay of 2 seconds before starting
+    const startTimeout = setTimeout(() => {
+      setIsStarted(true);
+    }, 2000);
 
-    return () => clearTimeout(timeout);
+    return () => clearTimeout(startTimeout);
   }, []);
 
   useEffect(() => {
-    if (!hasStarted) return;
-    
+    if (!isStarted) return;
+
     const timeout = setTimeout(() => {
       if (isDeleting) {
         if (currentText === "") {
@@ -280,15 +221,18 @@ export const TypewriterBackspace: React.FC<TypewriterBackspaceProps> = ({
       } else {
         const currentWord = words[currentWordIndex];
         if (currentText === currentWord.text) {
-          setIsDeleting(true);
+          // Pause at the end of typing for 1.5 seconds
+          setTimeout(() => {
+            setIsDeleting(true);
+          }, 1500);
         } else {
           setCurrentText(currentWord.text.slice(0, currentText.length + 1));
         }
       }
-    }, isDeleting ? 40 : 80);
+    }, isDeleting ? 100 : 150); // Slower typing speed (was 40/80, now 100/150)
 
     return () => clearTimeout(timeout);
-  }, [currentText, isDeleting, currentWordIndex, words, hasStarted]);
+  }, [currentText, currentWordIndex, isDeleting, words, isStarted]);
 
   return (
     <div className={cn("flex space-x-1 my-6", className)}>

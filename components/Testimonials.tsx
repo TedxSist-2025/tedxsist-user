@@ -47,8 +47,6 @@ export function InfiniteMovingCardsDemo() {
     }
   };
 
-  // Combine all testimonials for mobile view
-
   return (
     <div ref={containerRef} className="py-20 flex flex-col items-center justify-center gap-8">
       <div className="text-center space-y-4">
@@ -63,7 +61,6 @@ export function InfiniteMovingCardsDemo() {
           What Our <span className="text-primary">Speakers</span> Say
         </motion.h1>
         <motion.p
-        
           className="text-xl text-muted-foreground text-bold" 
           variants={subtitleVariants}
           initial="hidden"
@@ -74,24 +71,22 @@ export function InfiniteMovingCardsDemo() {
       </div>
 
      {/* Mobile view - Single Combined Testimonial */}
-<motion.div
-  className="relative flex md:hidden w-full overflow-hidden"
-  variants={cardContainerVariants}
-  initial="hidden"
-  animate={isInView ? "visible" : "hidden"}
->
-  <motion.div className="relative w-full perspective-1000" variants={cardVariants}>
-    <div className="absolute left-0 top-0 z-10 h-full w-[100px] bg-gradient-to-r from-background to-transparent" />
-    <div className="absolute right-0 top-0 z-10 h-full w-[100px] bg-gradient-to-l from-background to-transparent" />
-    <InfiniteMovingCards
-      items={[...leftTestimonials, ...centerTestimonials, ...rightTestimonials]} 
-      direction="top"
-      speed="slow"
-      className="w-full"
-    />
-  </motion.div>
-</motion.div>
-
+      <motion.div
+        className="relative flex md:hidden w-full overflow-hidden"
+        variants={cardContainerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
+        <motion.div className="relative w-full perspective-1000" variants={cardVariants}>
+          <div className="absolute left-0 top-0 z-10 h-full w-[100px] bg-gradient-to-r from-background to-transparent" />
+          <div className="absolute right-0 top-0 z-10 h-full w-[100px] bg-gradient-to-l from-background to-transparent" />
+          <InfiniteMovingCards
+            items={[...leftTestimonials, ...centerTestimonials, ...rightTestimonials]} 
+            direction="top"
+            className="w-full"
+          />
+        </motion.div>
+      </motion.div>
 
       {/* Desktop view */}
       <motion.div
@@ -110,8 +105,8 @@ export function InfiniteMovingCardsDemo() {
             <div className="absolute right-0 top-0 z-10 h-full w-[100px] bg-gradient-to-l from-background to-transparent" />
             <InfiniteMovingCards
               items={items}
-              direction={index === 2 ? "bottom" : "top"}
-              speed="slow"
+              direction={index === 1 ? "bottom" : "top"}
+              rowPosition={index === 0 ? "left" : index === 1 ? "center" : "right"}
               className="w-full"
             />
           </motion.div>
