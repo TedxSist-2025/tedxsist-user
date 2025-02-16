@@ -68,6 +68,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col lg:items-start">
             <Image src="/logo.png" alt="TEDxSIST" width={160} height={40} className="w-40 mb-6" priority />
             <p className="text-sm text-gray-400 leading-relaxed">
+              This independent TEDx event is operated under license from TED.
               TED is a global nonprofit promoting &quot;Ideas Worth Spreading&quot; across various fields. TEDxSIST, part of the TEDx program, organizes local events to create TED-like experiences, empowering voices to share impactful ideas and inspire change within the community while making a global impact.
             </p>
           </div>

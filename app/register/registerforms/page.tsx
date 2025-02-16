@@ -133,8 +133,8 @@ if (isRegistered === null) {
   return (
     <ProtectedRoute>
       <div className="max-w-4xl w-full mx-auto p-4 md:p-8">
-        <h2 className="font-bold text-3xl text-neutral-200 text-center mb-8">
-          TEDxSIST 2025 Registration
+        <h2 className="font-bold text-5xl text-neutral-200 text-center mb-8">
+          <span className="text-primary">TEDx</span>SIST 2025 Registration
         </h2>
 
         <form className="space-y-8" onSubmit={handleSubmit}>

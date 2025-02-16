@@ -81,9 +81,9 @@ const App = () => {
         transition={{ duration: 0.9 }}
         className="w-full flex flex-col items-center justify-center"
       >
-        <p className="text-lg mb-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
-          <span className="text-primary font-bold">Ipsum</span> in primary.
+        <p className="text-2xl mb-4">
+          Save the date{" "}
+          <span className="text-primary font-bold">24th Jan 2025</span>
         </p>
 
         {isMounted && windowWidth > 0 && (
