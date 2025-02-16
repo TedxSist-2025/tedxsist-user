@@ -39,7 +39,7 @@ export default function AboutTED() {
         funding for projects that seek to make the world more beautiful, sustainable and just. In 2020, TED launched
         Countdown, an initiative to accelerate solutions to the climate crisis and mobilize a movement for a net-zero
         future, and in 2023 TED launched TED Democracy to spark a new kind of conversation focused on realistic pathways
-        towards a more vibrant and equitable future. View a full list of TED's many programs and initiatives.
+        towards a more vibrant and equitable future. View a full list of TED&apos;s many programs and initiatives.
       </p>
       </div>
     </motion.section>

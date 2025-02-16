@@ -82,4 +82,4 @@ export function formatTimeAgo(publishedAt: string): string {
   if (days < 7) return `${days} days ago`;
   if (days < 30) return `${Math.floor(days/7)} weeks ago`;
   if (months < 12) return `${months} months ago`;
-  return `${years} years ago`;
+  return `${years} years ago`;}

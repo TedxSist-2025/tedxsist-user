@@ -105,7 +105,7 @@ router.push('/register');
   } finally {
     setIsSubmitting(false);
   }
-}, [toast, userEmail]);
+}, [toast, userEmail,router]);
 
 if (isRegistered === null) {
   return(

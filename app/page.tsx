@@ -30,7 +30,7 @@ export default function HomePage() {
    const [cursorHidden, setCursorHidden] = useState(false);
   const [videos, setVideos] = useState<VideoData[]>([]);
   const [mainVideo, setMainVideo] = useState<VideoData | null>(null);
-  const [cursorVariant, setCursorVariant] = useState("default");
+  
     const ref = useRef(null);
     const isInView = useInView(ref, { once: false });
   useEffect(() => {
@@ -69,23 +69,7 @@ export default function HomePage() {
     fetchVideos();
   }, []);
 
-  useEffect(() => {
-    const handleMouseEnter = () => setCursorVariant("hover");
-    const handleMouseLeave = () => setCursorVariant("default");
-
-    const elements = document.querySelectorAll("a, button");
-    elements.forEach((el) => {
-      el.addEventListener("mouseenter", handleMouseEnter);
-      el.addEventListener("mouseleave", handleMouseLeave);
-    });
-
-    return () => {
-      elements.forEach((el) => {
-        el.removeEventListener("mouseenter", handleMouseEnter);
-        el.removeEventListener("mouseleave", handleMouseLeave);
-      });
-    };
-  }, []);
+ 
 
   const renderContent = () => (
     <main className="min-h-screen">

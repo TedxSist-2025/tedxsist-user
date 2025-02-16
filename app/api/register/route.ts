@@ -67,16 +67,20 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ success: true, participantId: uuidv4() }, { status: 201 });
-  } catch (error: any) {
-    if (error.message === "You have already registered.") {
-      return NextResponse.json({ error: error.message }, { status: 409 });
-    }
+  }catch (error: unknown) {
+    if (error instanceof Error) {
+      if (error.message === "You have already registered.") {
+        return NextResponse.json({ error: error.message }, { status: 409 });
+      }
 
-    console.error("Error submitting registration", {
-      error: error.message,
-      stack: error.stack,
-      body: body,
-    });
+      console.error("Error submitting registration", {
+        error: error.message,
+        stack: error.stack,
+        body: body,
+      });
+    } else {
+      console.error("An unknown error occurred", { error });
+    }
 
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }

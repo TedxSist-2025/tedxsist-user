@@ -47,12 +47,14 @@ const Footer: React.FC = () => {
         });
       }
     } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "Something went wrong. Please try again.",
-      });
-    }
+  console.error("Subscription error:", error);
+  toast({
+    variant: "destructive",
+    title: "Error",
+    description: "Something went wrong. Please try again.",
+  });
+}
+
   };
   useEffect(() => {
     setYear(new Date().getFullYear()); // Ensure the year is set only after mount
