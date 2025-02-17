@@ -13,10 +13,10 @@ interface Testimonial {
   src: string;
 }
 
-type TeamName = "Chairpersons" | "Curation Team" | "Finance Team" | "Operations Team" | "Production Team" | "Tech Team";
+type TeamName = "Organisers" | "Curation Team" | "Finance Team" | "Operations Team" | "Production Team" | "Tech Team";
 
 const teams: TeamName[] = [
-  "Chairpersons",
+  "Organisers",
   "Curation Team",
   "Finance Team",
   "Operations Team",
@@ -25,156 +25,234 @@ const teams: TeamName[] = [
 ];
 
 const testimonialsByTeam: Record<TeamName, Testimonial[]> = {
-  "Chairpersons": [
+  "Organisers": [
     {
       id: 1,
-      quote:
-        "The latest features and improvements have made this platform indispensable for our team's daily operations.",
-      name: "Sarah Chen",
-      designation: "Product Manager at TechFlow",
+      quote: "Organizer Murali Sairam fosters TEDxSIST 2025’s community-driven spirit. With resilience and vision, he unites teams under a shared purpose, ensuring a collaborative, impactful event that celebrates ideas and meaningful conversations.",
+      name: "M. Murali Sai Ram",
+      designation: "President and Licensee",
       src: "/sample.png",
     },
     {
       id: 2,
-      quote:
-        "The 2024 updates have transformed how we handle complex workflows. Incredibly impressed.",
-      name: "Michael Rodriguez",
-      designation: "CTO at InnovateSphere",
+      quote: "Vice President and Co-Licensee of TEDxSIST 2025, Thaarni embraces challenges with her motto, &quot;Do it scared!&quot; Her resilience and leadership empower the team, pushing them beyond comfort zones to create a powerful, transformative TEDx experience.",
+      name: "Thaarani",
+      designation: "Vice President and Licensee",
+      src: "/sample.png",
+    },
+    {
+      id: 2,
+      quote: "Mukesh, TEDxSIST 2025’s Cluster Coordinator, blends creativity with leadership. He expertly navigates communication across diverse teams, ensuring smooth coordination and an event that challenges boundaries, inspiring innovation and immersive storytelling.",
+      name: "Mukesh.D.R",
+      designation: "Cluster Coordinator",
       src: "/sample.png",
     },
     {
       id: 3,
-      quote:
-        "This year's innovations have set a new standard for what we expect from enterprise software.",
-      name: "Emily Watson",
-      designation: "Operations Director at CloudScale",
+      quote: "Vice President and Co-Licensee of TEDxSIST 2025, Thaarni embraces challenges with her motto, 'Do it scared!' Her resilience and leadership empower the team, pushing them beyond comfort zones to create a powerful, transformative TEDx experience.",
+      name: "Thaarani.S",
+      designation: "Vice President and Co-Licensee",
       src: "/sample.png",
     },
   ],
   "Curation Team": [
     {
       id: 4,
-      quote:
-        "The platform's reliability and performance throughout 2023 exceeded all expectations.",
-      name: "David Park",
-      designation: "Engineering Director at DataFlow",
+      quote: "As Curation Lead, Safa crafts powerful narratives, shaping TEDxSIST 2025 to inspire and challenge perspectives. Through thematic flow and talk structure, she ensures an immersive experience that sparks curiosity and deep engagement.",
+      name: "Safa",
+      designation: "Curation Lead",
       src: "/sample.png",
     },
     {
       id: 5,
-      quote:
-        "Our team's productivity doubled after implementing the solution in early 2023.",
-      name: "Jennifer Martinez",
-      designation: "VP of Operations at TechGrowth",
+      quote: "Member of the Curation Team",
+      name: "Janapriya S",
+      designation: "Curation Team",
       src: "/sample.png",
     },
     {
       id: 6,
-      quote:
-        "The 2023 feature set revolutionized how we approach customer engagement.",
-      name: "Robert Chang",
-      designation: "Customer Success Lead at CloudTech",
+      quote: "Member of the Curation Team",
+      name: "Prapti Ghosh",
+      designation: "Curation Team",
+      src: "/sample.png",
+    },
+    {
+      id: 7,
+      quote: "Member of the Curation Team",
+      name: "Abhilasha Modak",
+      designation: "Curation Team",
+      src: "/sample.png",
+    },
+    
+    {
+      id: 8,
+      quote: "Member of the Curation Team",
+      name: "Dheeraj sv",
+      designation: "Curation Team",
+      src: "/sample.png",
+    },
+    {
+      id: 9,
+      quote: "Member of the Curation Team",
+      name: "Aakriti Bose",
+      designation: "Curation Team",
+      src: "/sample.png",
+    },
+    {
+      id: 10,
+      quote: "Member of the Curation Team",
+      name: "Catherine Oviya",
+      designation: "Curation Team",
       src: "/sample.png",
     },
   ],
   "Finance Team": [
     {
-      id: 7,
-      quote: "Being an early adopter in 2022 was one of our best strategic decisions.",
-      name: "Lisa Thompson",
-      designation: "CIO at FutureNet",
+      id: 11,
+      quote: "As Finance and Marketing Lead, Sai Tejas masterfully balances budgeting and creative promotion. His strategic mindset and problem-solving skills drive impactful campaigns and partnerships, shaping TEDxSIST 2025 into an engaging and financially sound event.",
+      name: "Sai Tejas S",
+      designation: "Finance and Marketing Team",
       src: "/sample.png",
     },
     {
-      id: 8,
-      quote: "The 2022 launch immediately solved our core challenges in spectacular fashion.",
-      name: "James Wilson",
-      designation: "Technical Lead at InnovateHub",
+      id: 12,
+      quote: "Member of the Finance and Marketing Team",
+      name: "Neeharika Krishnan V",
+      designation: "Finance and Marketing Team",
       src: "/sample.png",
     },
     {
-      id: 9,
-      quote: "From day one in 2022, the platform delivered exactly what was promised.",
-      name: "Amanda Chen",
-      designation: "Product Director at ScaleTech",
+      id: 13,
+      quote: "Member of the Finance and Marketing Team",
+      name: "Pradeep Vasan R",
+      designation: "Finance and Marketing Team",
+      src: "/sample.png",
+    },
+    {
+      id: 14,
+      quote: "Member of the Finance and Marketing Team",
+      name: "Akul MS",
+      designation: "Finance and Marketing Team",
       src: "/sample.png",
     },
   ],
   "Operations Team": [
     {
-      id: 10,
-      quote:
-        "Seamless integration and outstanding support made this a game-changer for our operations.",
-      name: "Chris Morgan",
-      designation: "COO at LogiTech Solutions",
+      id: 15,
+      quote: "Shiney Beulah, the Logistics and Operations Lead, is a dynamic multitasker who thrives on collaboration and precision. With relentless dedication, she streamlines event logistics, ensuring TEDxSIST 2025 runs flawlessly while fostering teamwork and an inspiring, detail-oriented environment.",
+      name: "Shiney Beulah J",
+      designation: "Logistics and Operations Team",
       src: "/sample.png",
     },
     {
-      id: 11,
-      quote:
-        "Optimizing our supply chain became effortless with the latest automation features.",
-      name: "Natalie Brooks",
-      designation: "Operations Manager at FastTrack",
+      id: 16,
+      quote: "Member of the Logistics and Operations Team",
+      name: "Arundhathi S",
+      designation: "Logistics and Operations Team",
       src: "/sample.png",
     },
     {
-      id: 12,
-      quote:
-        "Our operational efficiency skyrocketed after adopting this platform.",
-      name: "Ethan Davis",
-      designation: "VP of Logistics at SwiftMove",
+      id: 17,
+      quote: "Member of the Logistics and Operations Team",
+      name: "C. Sai Varun",
+      designation: "Logistics and Operations Team",
+      src: "/sample.png",
+    },
+    {
+      id: 18,
+      quote: "Member of the Logistics and Operations Team",
+      name: "S.Tabitha Juliana",
+      designation: "Logistics and Operations Team",
+      src: "/sample.png",
+    },
+    {
+      id: 19,
+      quote: "Member of the Logistics and Operations Team",
+      name: "Narean Rajendran",
+      designation: "Logistics and Operations Team",
       src: "/sample.png",
     },
   ],
   "Production Team": [
     {
-      id: 13,
-      quote:
-        "This tool has revolutionized our production pipeline. We can't imagine working without it.",
-      name: "Sophia Turner",
-      designation: "Production Lead at MegaManufacture",
+      id: 20,
+      quote: "Dhyani Stark, TEDxSIST 2025’s Production Lead, is a visionary force ensuring seamless execution. Known for his adaptability and sharp creative eye, he meticulously oversees every detail, blending ideation with precision to bring the event’s visual storytelling to life.",
+      name: "Dhyaneshwar MD",
+      designation: "Production Lead",
       src: "/sample.png",
     },
     {
-      id: 14,
-      quote:
-        "Unmatched flexibility and performance. Our production timelines have never been smoother.",
-      name: "Oliver Grant",
-      designation: "Factory Manager at BuildFast",
+      id: 21,
+      quote: "Member of the Production Team",
+      name: "Antony Joseph A",
+      designation: "Production Team",
       src: "/sample.png",
     },
     {
-      id: 15,
-      quote:
-        "Scaling production with this platform has been one of our smartest moves.",
-      name: "Grace Kim",
-      designation: "Head of Manufacturing at ApexTech",
+      id: 22,
+      quote: "Member of the Production Team",
+      name: "Pa.Hariharan",
+      designation: "Production Team",
+      src: "/sample.png",
+    },
+    {
+      id: 23,
+      quote: "Member of the Production Team",
+      name: "Naveen.V",
+      designation: "Production Team",
       src: "/sample.png",
     },
   ],
   "Tech Team": [
     {
-      id: 16,
-      quote:
-        "As a developer, I appreciate the powerful APIs and seamless integrations.",
-      name: "Daniel Lee",
-      designation: "Software Engineer at DevSolutions",
+      id: 24,
+      quote: "Tech Lead Gowtham is the problem-solver behind TEDxSIST 2025’s seamless execution. His expertise in troubleshooting, adaptability, and innovation ensures flawless live events, enhancing audience experiences with cutting-edge technology and meticulous planning.",
+      name: "Gowtham S",
+      designation: "Tech Team",
+      src: "/sample.png",
+    },
+    
+    {
+      id: 25,
+      quote: "Member of the Tech Team",
+      name: "Hari Aravind A",
+      designation: "Tech Team",
       src: "/sample.png",
     },
     {
-      id: 17,
-      quote:
-        "The latest updates have taken performance and security to the next level.",
-      name: "Emma Carter",
-      designation: "CTO at CodeFlow",
+      id: 26,
+      quote: "Member of the Tech Team",
+      name: "Hari Prashanth S",
+      designation: "Tech Team",
       src: "/sample.png",
     },
     {
-      id: 18,
-      quote:
-        "Our engineering workflow improved dramatically after implementing this platform.",
-      name: "Ryan Foster",
-      designation: "Lead Developer at SoftWorks",
+      id: 27,
+      quote: "Member of the Tech Team",
+      name: "Naveenraj K",
+      designation: "Tech Team",
+      src: "/sample.png",
+    },
+    {
+      id: 28,
+      quote: "Member of the Tech Team",
+      name: "Hari Kesavan P",
+      designation: "Tech Team",
+      src: "/sample.png",
+    },
+    {
+      id: 29,
+      quote: "Member of the Tech Team",
+      name: "Lohith Krishna JK",
+      designation: "Tech Team",
+      src: "/sample.png",
+    },
+    {
+      id: 30,
+      quote: "Member of the Tech Team",
+      name: "K Hariom Subudhi",
+      designation: "Tech Team",
       src: "/sample.png",
     },
   ],

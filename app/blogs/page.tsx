@@ -58,7 +58,7 @@ export default function BlogBentoGrid() {
         </div>
 
         <BentoGrid className="md:auto-rows-[minmax(20rem,auto)] cursor-pointer gap-4">
-          {blogEntries.map(([slug, blog], i) => (
+          {blogEntries.slice(1).map(([slug, blog], i) => (
             <BentoGridItem
               key={i}
               title={blog.title}

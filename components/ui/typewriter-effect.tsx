@@ -81,7 +81,7 @@ export const TypewriterEffect = ({
   return (
     <div
       className={cn(
-        "text-base sm:text-xl md:text-3xl lg:text-5xl font-bold text-center",
+        "text-base sm:text-2xl md:text-3xl lg:text-2xl font-bold text-center",
         className
       )}
     >
@@ -99,7 +99,7 @@ export const TypewriterEffect = ({
           repeatType: "reverse",
         }}
         className={cn(
-          "inline-block rounded-sm w-[4px] h-4 md:h-6 lg:h-10 bg-primary",
+          "inline-block rounded-sm w-[4px] h-8 sm:h-9 md:h-10 lg:h-10 bg-primary",
           cursorClassName
         )}
       ></motion.span>
@@ -238,7 +238,7 @@ export const TypewriterBackspace: React.FC<TypewriterProps> = ({
     <div className={cn("flex space-x-1 my-6", className)}>
       <div className="overflow-hidden pb-2">
         <div
-          className="text-xs sm:text-base md:text-xl lg:text:2xl xl:text-3xl font-bold"
+          className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold"
           style={{ whiteSpace: "nowrap" }}
         >
           <span className="dark:text-primary text-white">
@@ -263,7 +263,7 @@ export const TypewriterBackspace: React.FC<TypewriterProps> = ({
           repeatType: "reverse",
         }}
         className={cn(
-          "block rounded-sm w-[4px] h-4 sm:h-6 xl:h-10 bg-primary",
+          "block rounded-sm w-[4px] h-6 sm:h-6 md:h-8 lg:h-10 bg-primary",
           cursorClassName
         )}
       />

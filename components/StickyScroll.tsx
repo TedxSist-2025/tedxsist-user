@@ -17,22 +17,22 @@ export default function StickyScroll() {
   const sections: Section[] = [
     {
       title: <>What is <span className="text-primary">TEDx?</span></>,
-      description: "In the spirit of discovering and spreading ideas, TED has created a program called TEDx. TEDx is a program of local, self-organized events that bring people together to share a TED-like experience. Our event is called TEDx[name], where x = independently organized TED event. At our TEDx[name] event, TED Talks video and live speakers will combine to spark deep discussion and connection in a small group. The TED Conference provides general guidance for the TEDx program, but individual TEDx events, including ours, are self-organized.",
+      description: "In the spirit of discovering and spreading ideas, TED has created a program called TEDx. TEDx is a program of local, self-organized events that bring people together to share a TED-like experience. Our event is called TEDxSIST, where x = independently organized TED event. At our TEDxSIST event, TED Talks video and live speakers will combine to spark deep discussion and connection in a small group. The TED Conference provides general guidance for the TEDx program, but individual TEDx events, including ours, are self-organized.",
       image: "/bg.png?height=400&width=600",
     },
     {
-      title: "Expert Team",
-      description: "Our team of skilled professionals brings years of experience and deep industry knowledge to every project. With expertise in software development, data analytics, and emerging technologies, we work collaboratively to deliver exceptional results. Our commitment to excellence ensures that we provide innovative, scalable, and efficient solutions tailored to your needs. Trust our experts to turn your vision into reality.",
+      title: <>Our <span className="text-primary">Vision & Impact</span></>,
+      description: "TEDxSIST is not just about hosting an event—it's about inspiring lasting change. Since its inception, TEDxSIST has become a platform for sharing transformative ideas that drive change in the community. Through thought-provoking talks, collaborations, and shared experiences, TEDxSIST aims to foster a space where innovation, resilience, and action are nurtured.",
       image: "/bg.png?height=400&width=600",
     },
     {
-      title: "Global Reach",
-      description: "Expand your business worldwide with our extensive network and strategic partnerships. We connect you with customers across different regions, helping you tap into new markets and unlock global opportunities. With a strong presence and reliable connections, we ensure seamless cross-border operations. Reach your audience effortlessly and grow your business beyond boundaries.",
+      title: <>Theme: <span className="text-primary">Resilience</span></>,
+      description: "At TEDxSIST 2025, we believe in the power of resilience—the ability to adapt, persevere and emerge stronger through challenges. This year's theme, 'Resilience: Exploring the Human Experiences' highlights the inspiring stories of people who have overcome difficulties and shaped their own futures. Our speakers will share their powerful experience and ideas that encourage action, spark new thoughts and inspire curiosity in every listener.",
       image: "/bg.png?height=400&width=600",
     },
     {
-      title: "Future Ready",
-      description: "Stay ahead of the curve with forward-thinking strategies and innovative approaches. Our solutions are designed to help businesses adapt to rapid technological changes, ensuring long-term success. We integrate emerging technologies, market trends, and data-driven insights to prepare you for the future. Embrace innovation and position your business for sustainable growth in an ever-evolving landscape.",
+      title: <>Why Attend<span className="text-primary"> TEDx</span>SIST</>,
+      description: "Joining us where we run you through experiences of resilience filled with inspiration will connect passionate individuals. Imagine being part of a global community, where every conversation and every talk has the potential to ignite action and change – not just in your own life, but in the world around you. It's a fuel to your next big step towards making a difference.",
       image: "/bg.png?height=400&width=600",
     },
   ];

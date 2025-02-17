@@ -30,7 +30,7 @@ const data = [
         >
           The upcoming TEDxSIST event will focus on resilience—the ability to overcome challenges and emerge stronger. This theme explores various aspects of resilience in human experiences, including personal growth, community solidarity, innovation, and creativity. Join us as we hear inspiring talks from individuals who embody resilience and share transformative ideas that drive change.
         </motion.p>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           <Image
             src="/tedx2025-1.jpg"
             alt="TEDxSIST 2025 Event"
@@ -73,7 +73,7 @@ const data = [
         >
           TEDxSIST 2023 explored new frontiers of human experience, from technological advancements to philosophical reflections on society. The event was a journey into uncharted territories of thought, offering a mix of futuristic concepts and practical insights.
         </motion.p>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           <Image
             src="/tedx2023-1.jpg"
             alt="TEDxSIST 2023 Event"
@@ -116,7 +116,7 @@ const data = [
         >
           TEDxSIST 2022 brought together brilliant minds who shared their diverse ideas, dreams, and innovations. The event was about finding strength in unity and collaboration, despite seemingly isolating challenges.
         </motion.p>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           <Image
             src="/tedx2022-1.jpg"
             alt="TEDxSIST 2022 Event"

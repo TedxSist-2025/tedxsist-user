@@ -34,7 +34,7 @@ export const GoogleGeminiEffect: React.FC<GoogleGeminiEffectProps> = ({
 
   return (
     <div className={cn("sticky top-20", className)}>
-      <div className={cn("relative w-full min-h-[890px]", className)}>
+      <div className={cn("relative w-full min-h-[600px] sm:min-h-[700px] md:min-h-[800px] lg:min-h-[890px]", className)}>
         <div className="absolute inset-0 flex flex-col items-center justify-start pt-20 z-10">
           <Spotlight />
           <div className="text-center space-y-4">
@@ -46,7 +46,7 @@ export const GoogleGeminiEffect: React.FC<GoogleGeminiEffectProps> = ({
                 delay: 0,
                 ease: [0.25, 0.4, 0.25, 1],
               }}
-              className="text-neutral-300 dark:text-neutral-300 text-md sm:text-md md:text-lg lg:text-xl"
+              className="text-base sm:text-lg md:text-2xl lg:text-xl text-neutral-300 dark:text-neutral-300"
             >
               Registrations Open!!
             </motion.p>
@@ -69,7 +69,7 @@ export const GoogleGeminiEffect: React.FC<GoogleGeminiEffectProps> = ({
                   delay: 0.8,
                   ease: [0.25, 0.4, 0.25, 1],
                 }}
-                className="text-4xl md:text-[6rem] font-bold leading-none"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-[6rem] font-bold leading-none"
               >
                 <span className="text-primary">TEDx</span>SIST 2025
               </motion.span>
@@ -81,7 +81,7 @@ export const GoogleGeminiEffect: React.FC<GoogleGeminiEffectProps> = ({
                   delay: 1.2,
                   ease: [0.25, 0.4, 0.25, 1],
                 }}
-                className="text-4xl md:text-[6rem] font-bold leading-none"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-[6rem] font-bold leading-none"
               >
                 <TypewriterBackspace words={words} />
               </motion.div>
@@ -96,17 +96,17 @@ export const GoogleGeminiEffect: React.FC<GoogleGeminiEffectProps> = ({
               delay: 1.6,
               ease: [0.25, 0.4, 0.25, 1],
             }}
-            className="flex justify-center mt-8"
+            className="flex justify-center mt-4 sm:mt-6 md:mt-8"
           >
             <HoverBorderGradient
               containerClassName="rounded-[60px]"
               as="button"
-              className="group relative flex items-center gap-1 rounded-[60px] bg-black/90 px-12 py-3 text-sm text-primary backdrop-blur-sm transition-all duration-300 hover:bg-[#EB0028] hover:text-white hover:border-primary hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-[#EB0028]"
+              className="group relative flex items-center gap-1 rounded-[60px] bg-black/90 px-6 sm:px-8 md:px-10 lg:px-12 py-2 sm:py-2.5 md:py-3 text-sm text-primary backdrop-blur-sm transition-all duration-300 hover:bg-[#EB0028] hover:text-white hover:border-primary hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-[#EB0028]"
               onClick={() => router.push("/register")}
             >
               <div className="flex items-center gap-2">
-                <span className="relative z-10 text-xl font-bold">Register</span>
-                <ArrowRight className="font-bold relative z-10 h-6 w-6 transition-transform duration-300 group-hover:translate-x-1" />
+                <span className="relative z-10 text-xl sm:text-2xl md:text-2xl lg:text-xl font-bold">Register</span>
+                <ArrowRight className="font-bold relative z-10 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 transition-transform duration-300 group-hover:translate-x-1" />
                 <div className="absolute inset-0 rounded-full border border-white/10" />
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/[0.03] to-transparent" />
               </div>
@@ -115,9 +115,10 @@ export const GoogleGeminiEffect: React.FC<GoogleGeminiEffectProps> = ({
         </div>
       </div>
       <svg
-        width="1440"
-        height="760"
+        width="100%"
+        height="100%"
         viewBox="0 0 1440 780"
+        preserveAspectRatio="xMidYMid meet"
         xmlns="http://www.w3.org/2000/svg"
         className="absolute inset-0 w-full h-full"
       >

@@ -88,21 +88,21 @@ const StatisticsSection = () => {
   const stats: Stat[] = [
     {
       label: "Client Success Rate",
-      value: 98,
-      suffix: "%",
-      description: "Consistently exceeding expectations",
-    },
-    {
-      label: "Projects Delivered",
-      value: 250,
+      value: 3,
       suffix: "+",
-      description: "On time and within budget",
+      description: "Years of thought-provoking events",
     },
     {
-      label: "Team Expertise",
-      value: 15,
-      suffix: "y",
-      description: "Years of combined experience",
+      label: "Annual Registrations",
+      value: 1200,
+      suffix: "+",
+      description: "Annual Registrations",
+    },
+    {
+      label: "Inspiring Speakers per edition",
+      value: 6,
+      suffix: "",
+      description: "Inspiring Speakers per edition",
     },
   ];
 
@@ -124,7 +124,8 @@ const StatisticsSection = () => {
           transition={{ delay: 0.2 }}
           className="text-gray-500 text-lg max-w-2xl mx-auto"
         >
-          Delivering exceptional results through dedication and expertise
+          Inspiring Minds, Building Community
+
         </motion.p>
       </div>
       <StatsCard stats={stats} />

@@ -12,75 +12,85 @@ interface Testimonial {
   src: string;
 }
 
-type Year = 2024 | 2023 | 2022;
-const years = [2024, 2023, 2022] as const;
+type Year =  2023 | 2022;
+const years = [ 2023, 2022] as const;
 
-const testimonials2024: Testimonial[] = [
-  {
-    quote: "The latest features and improvements have made this platform indispensable for our team's daily operations.",
-    name: "Sarah Chen",
-    designation: "Product Manager at TechFlow",
-    src: "/sample.png",
-  },
-  {
-    quote: "The 2024 updates have transformed how we handle complex workflows. Incredibly impressed.",
-    name: "Michael Rodriguez",
-    designation: "CTO at InnovateSphere",
-    src: "/sample.png",
-  },
-  {
-    quote: "This year's innovations have set a new standard for what we expect from enterprise software.",
-    name: "Emily Watson",
-    designation: "Operations Director at CloudScale",
-    src: "/sample.png",
-  },
-]
+
 
 const testimonials2023: Testimonial[] = [
   {
-    quote: "The platform's reliability and performance throughout 2023 exceeded all expectations.",
-    name: "David Park",
-    designation: "Engineering Director at DataFlow",
-    src: "/sample.png",
+    quote: "Dr. Aishwarya is a skilled dermatologist at the Skin Health Foundation, Chennai. With an MBBS and MD from Sri Ramachandra Medical College, she specializes in Dermatology, Venereology, and Leprosy",
+    name: "Dr. Aishwarya",
+    designation: "Dermatologist at Skin Health Foundation, Chennai",
+    src: "/aishwarya.png",
   },
   {
-    quote: "Our team's productivity doubled after implementing the solution in early 2023.",
-    name: "Jennifer Martinez",
-    designation: "VP of Operations at TechGrowth",
-    src: "/sample.png",
+    quote: "Divya Abhishek is the youngest Chairperson of the Southern India Regional Council of The Institute of Cost Accountants of India and the youngest woman Independent Director/Trustee on the boards of listed companies.",
+    name: "Divya Abhishek",
+    designation: "Independent Director & Financial Expert",
+    src: "/divya.png",
   },
   {
-    quote: "The 2023 feature set revolutionized how we approach customer engagement.",
-    name: "Robert Chang",
-    designation: "Customer Success Lead at CloudTech",
-    src: "/sample.png",
+    quote: "Kavitha Ramu, an accomplished IAS officer and CEO of the Chennai Metropolitan Development Authority, is driven by a passion for public service.",
+    name: "Kavitha Ramu",
+    designation: "IAS Officer & CEO, Chennai Metropolitan Development Authority",
+    src: "/kavitha.png",
+  },
+  {
+    quote: "Neerja Malik, a dedicated social worker and teacher with over 20 years of experience, is a true survivor and conqueror of cancer.",
+    name: "Neerja Malik",
+    designation: "Social Worker & Cancer Support Advocate",
+    src: "/neerja.png",
+  },
+  {
+    quote: "Mr. Sawan Kapoor launched his career in 2001 and quickly ascended the corporate ranks, becoming the CEO of Sutton & Maxwell, a part of The Palm Bay International Group—the largest wine and spirits import company in the U.S.—within just eight years.",
+    name: "Sawan Kapoor",
+    designation: "CEO, Sutton & Maxwell",
+    src: "/sawan.png",
   },
 ]
 
 const testimonials2022: Testimonial[] = [
   {
-    quote: "Being an early adopter in 2022 was one of our best strategic decisions.",
-    name: "Lisa Thompson",
-    designation: "CIO at FutureNet",
-    src: "/sample.png",
+    quote: "Ananya is a young author with a passion for sharing her unique perspective on life. A high school student with exceptional communication, leadership, and creativity, she's already published three books: 9 Chocolatey Bites, Dancing Kites, and Cloud Walker (at ages 10, 13, and 16).",
+    name: "Ananya V Ganesh",
+    designation: "Young Author & Speaker",
+    src: "/ananya.png",
   },
   {
-    quote: "The 2022 launch immediately solved our core challenges in spectacular fashion.",
-    name: "James Wilson",
-    designation: "Technical Lead at InnovateHub",
-    src: "/sample.png",
+    quote: "T. J. Gnanavel is a talented Indian film director and writer, primarily known for his impactful work in the Tamil film industry.",
+    name: "Gnanavel T. J",
+    designation: "Film Director & Writer",
+    src: "/gnanavel.png",
   },
   {
-    quote: "From day one in 2022, the platform delivered exactly what was promised.",
-    name: "Amanda Chen",
-    designation: "Product Director at ScaleTech",
-    src: "/sample.png",
+    quote: "Dr. Kannan Gireesh is a renowned psychiatrist and the Founder & CEO of Live Life Education Private Limited.",
+    name: "Kannan Gireesh",
+    designation: "Psychiatrist & CEO, Live Life Education",
+    src: "/kannan.png",
+  },
+  {
+    quote: "Maalica ArjunKrishnan, daughter of legendary director K.S. Ravikumar, began her career as a fashion designer but shifted paths after health challenges and postpartum depression.",
+    name: "Maalica ArjunKrishnan",
+    designation: "Mental Health Advocate",
+    src: "/maalica.png",
+  },
+  {
+    quote: "Sujith Kumar J is a dynamic 5-time TEDx speaker, passionate youth mentor, and accomplished writer.",
+    name: "Sujith Kumar J",
+    designation: "TEDx Speaker & Youth Mentor",
+    src: "/sujith.png",
+  },
+  {
+    quote: "Dr. Yamini Kannappan, MBBS, DPM, DNB, is a Consultant Psychiatrist at Kauvery Hospital, Chennai.",
+    name: "Yamini Kannappan",
+    designation: "Consultant Psychiatrist, Kauvery Hospital",
+    src: "/yamini.png",
   },
 ]
 
 const createYearContent = (year: Year) => {
   const testimonialsByYear: Record<Year, Testimonial[]> = {
-    2024: testimonials2024,
     2023: testimonials2023,
     2022: testimonials2022,
   }
